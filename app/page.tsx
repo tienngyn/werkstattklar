@@ -15,6 +15,7 @@ import { NavBar } from "@/components/ui/tubelight-navbar";
 import { TestimonialsSection } from "@/components/blocks/testimonials-with-marquee";
 import { BGPattern } from "@/components/ui/bg-pattern";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import { LogoCloud } from "@/components/ui/logo-cloud";
 
 // ─── Utils ────────────────────────────────────────────────────────────────────
 function cn(...c: (string | undefined | false | null)[]) {
