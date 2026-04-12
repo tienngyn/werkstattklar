@@ -163,7 +163,7 @@ function Navbar() {
 // ─── TRUST BAR ────────────────────────────────────────────────────────────────
 function TrustBar() {
   const items = [
-    { icon: Timer, text: "Fertig in 7 Tagen" },
+    { icon: Timer, text: "Schnell & sorgfältig umgesetzt" },
     { icon: Users, text: "1 persönlicher Ansprechpartner" },
     { icon: TrendingUp, text: "Region HN & Stuttgart" },
     { icon: Star, text: "3-fache Garantie" },
@@ -259,17 +259,13 @@ function Hero() {
   return (
     <LampContainer contentClassName="max-w-6xl mx-auto px-4 pt-36 pb-20">
       <div className="max-w-4xl relative z-30">
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="mb-8">
-          <KickerBadge>Nur 3 neue Kunden pro Monat — <span className="text-white font-bold">2 Plätze frei im Mai</span></KickerBadge>
-        </motion.div>
-
         <motion.h1
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6"
         >
           Ihre neue Website —{" "}
           <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">fertig in 7 Tagen.</span>
+            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">die Kunden überzeugt.</span>
             <motion.span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-red-500 to-transparent"
               initial={{ scaleX:0 }} animate={{ scaleX:1 }} transition={{ delay:1, duration:.8 }} />
           </span>
@@ -466,8 +462,8 @@ function Problems() {
 // ─── SOLUTION — 21st.dev BentoCard hover + slide pattern ─────────────────────
 function Solution() {
   const features = [
-    { icon: Zap, title: "Professionelle Website in 7 Tagen", meta: "WEBSITE", num: "01",
-      body: "Sieht aus wie von einer teuren Agentur gebaut — ist in 7 Tagen fertig. Mobiloptimiert, schnell, mit Kontaktformular, Google Maps und allem was ein Handwerker braucht.",
+    { icon: Zap, title: "Professionelle Website, die überzeugt", meta: "WEBSITE", num: "01",
+      body: "Sieht aus wie von einer teuren Agentur gebaut — und das mit persönlicher Betreuung. Mobiloptimiert, schnell, mit Kontaktformular, Google Maps und allem was ein Handwerker braucht.",
       result: "Kunden finden und vertrauen Ihnen",
       span: "lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2" },
     { icon: Phone, title: "Terminbuchung automatisch", meta: "KEIN VERPASSTER ANRUF", num: "02",
@@ -492,7 +488,7 @@ function Solution() {
       <Stagger className="text-center mb-14">
         <FadeUp><SectionLabel>Die Lösung</SectionLabel></FadeUp>
         <FadeUp><SectionHeading center>Website. Termine. Angebote. Bewertungen.</SectionHeading></FadeUp>
-        <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Alles was ein Handwerksbetrieb digital braucht — aus einer Hand, in 7 Tagen, mit einem Ansprechpartner.</p></FadeUp>
+        <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Alles was ein Handwerksbetrieb digital braucht — aus einer Hand, sorgfältig umgesetzt, mit einem Ansprechpartner.</p></FadeUp>
       </Stagger>
       {/* 21st.dev BentoGrid: mixed row/col spans */}
       <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:auto-rows-[minmax(140px,auto)] lg:grid-cols-3 gap-4">
@@ -561,7 +557,7 @@ function HowItWorks() {
     <Section className="bg-[#161616]" dots dotsBg="#161616">
       <Stagger className="text-center mb-14">
         <FadeUp><SectionLabel>Der Prozess</SectionLabel></FadeUp>
-        <FadeUp><SectionHeading center>In 7 Tagen live — ohne dass Sie etwas tun</SectionHeading></FadeUp>
+        <FadeUp><SectionHeading center>Schnell live — ohne dass Sie etwas tun</SectionHeading></FadeUp>
         <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Kein Monatelange Wartezeiten, kein hin und her. Einmal besprechen, einmal freigeben — fertig.</p></FadeUp>
       </Stagger>
 
@@ -670,7 +666,7 @@ function ROI() {
                 <span className="text-xs font-bold uppercase tracking-widest text-red-400">Mit WerkstattKLAR</span>
               </div>
               {[
-                { icon: Zap, text: "Moderne Website in 7 Tagen" },
+                { icon: Zap, text: "Professionelle Website, persönlich betreut" },
                 { icon: Phone, text: "Terminbuchung automatisch" },
                 { icon: FileText, text: "Angebot in 5 Minuten" },
                 { icon: Star, text: "6+ Bewertungen / Monat" },
@@ -735,7 +731,7 @@ function ValueStack() {
     "Google Maps Einbindung",
     "Impressum & Datenschutz",
     "Hosting & technische Pflege inklusive",
-    "Fertig in 7 Tagen",
+    "Persönliche Betreuung & schnelle Umsetzung",
     "1 direkter Ansprechpartner",
   ];
   const proItems = [
@@ -844,9 +840,9 @@ function Guarantees() {
       body:"Wenn Sie nach 30 Tagen nicht spürbar zufriedener mit Ihrer Online-Präsenz sind — volle Rückerstattung. Ohne Diskussion, ohne Bedingungen.",
       condition:"Ich arbeite so lange weiter, bis Sie zufrieden sind.",
       result:"0 € Risiko für Sie" },
-    { icon: Zap, emoji:"⚡", title:"Fertig in 7 Tagen — garantiert", label:"Tempo-Garantie",
-      body:"Ihre Website geht innerhalb von 7 Werktagen live. Wenn ich es nicht schaffe, bekommen Sie 200 € zurück. Versprochen.",
-      condition:"7 Tage. Nicht 7 Wochen. Nicht 3 Monate.",
+    { icon: Zap, emoji:"⚡", title:"Klares Timing — garantiert", label:"Tempo-Garantie",
+      body:"Keine monatelangen Wartezeiten. Ich nenne Ihnen einen konkreten Fertigstellungstermin — und halte ihn. Wenn nicht, bekommen Sie 200 € zurück.",
+      condition:"Ein klarer Termin. Kein Vertrösten.",
       result:"Pünktlich oder Sie bekommen Geld zurück" },
     { icon: RefreshCw, emoji:"♾️", title:"Laufende Betreuung inklusive", label:"Support-Garantie",
       body:"Solange Sie Kunde sind — direkter Kontakt, keine Tickets, keine Warteliste. Änderung per WhatsApp, Umsetzung innerhalb von 48 Stunden.",
@@ -1032,7 +1028,7 @@ function Testimonials() {
 // ─── FAQ ─────────────────────────────────────────────────────────────────────
 const faqs = [
   { q:"Was kostet das genau?", a:"Paket 1 (Website): 999 € einmalig, dann 49 €/Monat für Hosting und Pflege. Paket 2 (Website + Automationen): 1.999 € einmalig, dann 129 €/Monat — darin sind alle Tool-Kosten inklusive (Make.com, Cal.com, Claude API). Keine versteckten Kosten." },
-  { q:"Wirklich fertig in 7 Tagen?", a:"Ja. Sie schicken mir Fotos, Leistungen und Kontaktdaten — das dauert etwa 30 Minuten. Den Rest mache ich. Nach 5–7 Werktagen geht die Website live. Wenn ich es nicht schaffe, bekommen Sie 200 € zurück." },
+  { q:"Wie lange dauert es bis die Website live ist?", a:"Das hängt davon ab, wie schnell wir gemeinsam die Inhalte zusammenstellen. Normalerweise sind es 1–2 Wochen. Ich nenne Ihnen am Anfang einen konkreten Fertigstellungstermin — und halte ihn. Wenn nicht, bekommen Sie 200 € zurück." },
   { q:"Ich habe schon eine Website — was dann?", a:"Kein Problem. Wir schauen sie gemeinsam an. Wenn sie grundsätzlich noch zu retten ist, optimieren wir sie. Wenn nicht, bauen wir eine neue. Das klären wir im kostenlosen Erstgespräch." },
   { q:"Für welche Handwerker ist das gedacht?", a:"Für Betriebe mit 1–15 Mitarbeitern im Raum Heilbronn und Stuttgart: Elektriker, Maler, Sanitär/Heizung, Schreiner, Fliesenleger, Dachdecker — alle die Kunden vor Ort bedienen und mehr Anfragen wollen." },
   { q:"Was wenn ich keine Ahnung von Technik habe?", a:"Das ist der Normalfall. Sie müssen gar nichts selbst einrichten oder verstehen. Sie sagen mir was Sie wollen — ich setze es um. Änderungen danach: per WhatsApp schreiben, innerhalb von 48h erledigt." },
