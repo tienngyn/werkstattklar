@@ -163,9 +163,9 @@ function Navbar() {
 // ─── TRUST BAR ────────────────────────────────────────────────────────────────
 function TrustBar() {
   const items = [
-    { icon: Users, text: "12+ Handwerker" },
-    { icon: Timer, text: "Ø 60 Sek. Reaktionszeit" },
-    { icon: TrendingUp, text: "Kein Anruf mehr verpasst" },
+    { icon: Timer, text: "Fertig in 7 Tagen" },
+    { icon: Users, text: "1 persönlicher Ansprechpartner" },
+    { icon: TrendingUp, text: "Region HN & Stuttgart" },
     { icon: Star, text: "3-fache Garantie" },
   ];
   return (
@@ -201,7 +201,7 @@ function ToolsBar() {
   return (
     <div className="border-b border-white/[0.05] bg-white/[0.01] py-5">
       <p className="text-center text-xs font-semibold uppercase tracking-[0.25em] text-zinc-600 mb-4">
-        Kompatibel mit Ihren bestehenden Tools
+        Wir nutzen die besten Tools — Sie müssen sich um nichts kümmern
       </p>
       <LogoCloud logos={toolLogos} speed={60} speedOnHover={20} />
     </div>
@@ -260,28 +260,27 @@ function Hero() {
     <LampContainer contentClassName="max-w-6xl mx-auto px-4 pt-36 pb-20">
       <div className="max-w-4xl relative z-30">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="mb-8">
-          <KickerBadge>Nur 3 Plätze pro Monat — <span className="text-white font-bold">2 Plätze frei für April</span></KickerBadge>
+          <KickerBadge>Nur 3 neue Kunden pro Monat — <span className="text-white font-bold">2 Plätze frei im Mai</span></KickerBadge>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6"
         >
-          Schneller als{" "}
+          Ihre neue Website —{" "}
           <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">alle anderen</span>
+            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">fertig in 7 Tagen.</span>
             <motion.span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-red-500 to-transparent"
               initial={{ scaleX:0 }} animate={{ scaleX:1 }} transition={{ delay:1, duration:.8 }} />
           </span>
-          {" "}— kein Auftrag geht mehr verloren.
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.38, ease: [0.22, 1, 0.36, 1] }}
           className="text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed mb-10"
         >
-          Ihr Telefon klingelt — Sie sind auf der Baustelle. Wir antworten in{" "}
-          <span className="text-white">60 Sekunden automatisch</span>. Jeder verpasste Anruf wird zum Auftrag.
+          Kein Warten auf 3 Monate, kein Agentur-Chaos, kein Ticketsystem.{" "}
+          <span className="text-white">Ein Ansprechpartner, eine klare Lösung</span> — für Handwerker im Raum Heilbronn und Stuttgart.
         </motion.p>
 
         <motion.div
@@ -296,7 +295,7 @@ function Hero() {
             }}
             className="inline-flex items-center gap-2 cursor-pointer px-10 py-5 text-lg border border-zinc-700 hover:border-red-500/50 text-zinc-300 hover:text-white font-semibold rounded-xl transition-all duration-200 hover:bg-red-600/5 relative z-50"
           >
-            Wie es funktioniert
+            Demo ansehen <ArrowRight className="w-5 h-5" />
           </button>
         </motion.div>
 
@@ -330,8 +329,8 @@ function Hero() {
               ))}
             </div>
             <p className="text-xs text-zinc-400">
-              <span className="text-white font-semibold">12+ Handwerker</span>{" "}
-              <span className="text-zinc-500">verlieren keine Aufträge mehr</span>
+              <span className="text-white font-semibold">20+ Handwerksbetriebe</span>{" "}
+              <span className="text-zinc-500">in der Region vertrauen uns</span>
             </p>
           </div>
         </motion.div>
@@ -375,25 +374,25 @@ function Hero() {
 
 // ─── PROBLEM — 21st.dev Bento Monochrome mixed-span grid ─────────────────────
 const problemItems = [
-  { icon: Phone, title: "Verpasste Anrufe = verlorene Aufträge", meta: "HAUPTPROBLEM",
-    body: "Sie sind auf der Baustelle. Das Telefon klingelt. Sie können nicht rangehen. Bis Sie zurückrufen hat der Kunde schon bei der Konkurrenz einen Termin — die haben sofort geantwortet.",
-    cost: "Jeder verpasste Anruf kostet 200–500 €",
+  { icon: AlertTriangle, title: "Unsichtbar auf Google", meta: "HAUPTPROBLEM",
+    body: "Ihr Konkurrent hat 80 Bewertungen und eine moderne Website — Sie haben 12 Bewertungen und eine Seite aus 2014. Wer glauben Sie bekommt den Anruf?",
+    cost: "Täglich Aufträge die zur Konkurrenz gehen",
     span: "md:col-span-4 md:row-span-2" },
-  { icon: Clock, title: "47 Stunden zu spät", meta: "REAKTIONSZEIT",
-    body: "Durchschnittlicher Handwerker antwortet nach 47 Stunden. Der erste der antwortet gewinnt.",
-    cost: "Konkurrenz ist schneller",
+  { icon: Phone, title: "Anruf verpasst = Auftrag weg", meta: "ERREICHBARKEIT",
+    body: "Sie sind auf der Baustelle. Kunde ruft an, Sie können nicht rangehen. Bis Sie zurückrufen hat er schon woanders einen Termin.",
+    cost: "Jeder verpasste Anruf kostet 200–800 €",
     span: "md:col-span-2 md:row-span-1" },
-  { icon: AlertTriangle, title: "Kein Follow-up nach KVA", meta: "NACHFASSEN",
-    body: "Sie schicken ein Angebot raus — und hören nie wieder was. Der Kunde wartet nur auf einen Schubs.",
-    cost: "50% der Angebote verfallen",
+  { icon: Clock, title: "45 Minuten pro Angebot", meta: "ZEITVERLUST",
+    body: "Maße aufschreiben, Preise nachschlagen, Word-Dokument tippen, PDF erstellen. Das kostet fast eine Stunde — für jedes einzelne Angebot.",
+    cost: "Wertvolle Arbeitszeit verschwendet",
     span: "md:col-span-2 md:row-span-1" },
-  { icon: BarChart2, title: "Kein Überblick über Anfragen", meta: "DURCHEINANDER",
-    body: "Welche Anfragen laufen gerade? Welche sind noch offen? Wer hat noch nicht geantwortet? Niemand weiß es.",
-    cost: "Chaos und verpasste Chancen",
+  { icon: Star, title: "Kaum Google-Bewertungen", meta: "REPUTATION",
+    body: "Zufriedene Kunden denken nicht daran eine Bewertung zu hinterlassen. Ohne aktives Nachfragen bleibt der Betrieb bei 10–15 Bewertungen hängen — für immer.",
+    cost: "Kein Vertrauen, weniger Anfragen",
     span: "md:col-span-3 md:row-span-1" },
-  { icon: Users, title: "Konkurrenz antwortet zuerst", meta: "WETTBEWERB",
-    body: "Der Kunde ruft 3 Handwerker an. Den ersten der zurückschreibt wählt er — egal ob er teurer ist.",
-    cost: "Aufträge gehen zur Konkurrenz",
+  { icon: FileText, title: "Veraltete oder keine Website", meta: "AUSSENWIRKUNG",
+    body: "70% der Kunden schauen sich zuerst die Website an bevor sie anrufen. Eine schlechte Website ist schlimmer als gar keine.",
+    cost: "Erster Eindruck zerstört",
     span: "md:col-span-3 md:row-span-1" },
 ];
 
@@ -452,8 +451,8 @@ function Problems() {
       `}</style>
       <Stagger className="text-center mb-12">
         <FadeUp><SectionLabel>Das Problem</SectionLabel></FadeUp>
-        <FadeUp><SectionHeading center>Warum geht der Auftrag zur Konkurrenz?</SectionHeading></FadeUp>
-        <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Nicht weil Ihre Arbeit schlechter ist. Sondern weil jemand anderes schneller geantwortet hat.</p></FadeUp>
+        <FadeUp><SectionHeading center>Warum verlieren Handwerker täglich Aufträge?</SectionHeading></FadeUp>
+        <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Nicht weil die Arbeit schlechter ist. Sondern weil die Außenwirkung nicht stimmt.</p></FadeUp>
       </Stagger>
       <div ref={ref} className="grid grid-cols-1 gap-3 md:auto-rows-[minmax(130px,auto)] md:grid-cols-6">
         {problemItems.map((item, i) => (
@@ -467,33 +466,33 @@ function Problems() {
 // ─── SOLUTION — 21st.dev BentoCard hover + slide pattern ─────────────────────
 function Solution() {
   const features = [
-    { icon: Zap, title: "60 Sekunden Reaktion", meta: "SPEED TO LEAD", num: "01",
-      body: "Verpasster Anruf? Ihr System antwortet dem Kunden in 60 Sekunden automatisch per WhatsApp — mit Ihrem Namen, Ihrer Firma, Ihren Texten.",
-      result: "Sie antworten immer als Erster",
+    { icon: Zap, title: "Professionelle Website in 7 Tagen", meta: "WEBSITE", num: "01",
+      body: "Sieht aus wie von einer teuren Agentur gebaut — ist in 7 Tagen fertig. Mobiloptimiert, schnell, mit Kontaktformular, Google Maps und allem was ein Handwerker braucht.",
+      result: "Kunden finden und vertrauen Ihnen",
       span: "lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2" },
-    { icon: RefreshCw, title: "Automatisches Nachfassen", meta: "FOLLOW-UP", num: "02",
-      body: "Angebot rausgeschickt — kein Follow-up nötig. Tag 1, Tag 3, Tag 7 geht automatisch eine Nachricht raus. Sie müssen nichts tun.",
-      result: "Keine verlorenen Aufträge mehr",
+    { icon: Phone, title: "Terminbuchung automatisch", meta: "KEIN VERPASSTER ANRUF", num: "02",
+      body: "Kunden buchen direkt auf der Website einen Termin — ohne anzurufen. Sie bekommen die Buchung sofort per Mail. Der Kunde bekommt eine Bestätigung und SMS-Erinnerung.",
+      result: "Kein verpasster Auftrag mehr",
       span: "lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2" },
-    { icon: MessageSquare, title: "Intelligente Qualifizierung", meta: "QUALIFIZIERUNG", num: "03",
-      body: "Störung, Reparatur oder Neubau? Das System fragt automatisch nach und schickt Ihnen die richtigen Infos.",
-      result: "Nur noch warme Leads für Sie",
+    { icon: FileText, title: "KI-Angebotserstellung", meta: "5 STATT 45 MINUTEN", num: "03",
+      body: "Kunde füllt ein Formular aus. Eine KI erstellt das vollständige Angebot als PDF. Sie prüfen kurz, klicken auf Senden. Fertig.",
+      result: "45 Minuten auf 5 Minuten",
       span: "lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3" },
-    { icon: LayoutDashboard, title: "Alle Anfragen im Blick", meta: "ÜBERBLICK", num: "04",
-      body: "Jede Anfrage, jeder Status, jeder Lead — übersichtlich in einem Sheet. Nichts geht verloren.",
-      result: "Klarheit statt Durcheinander",
+    { icon: Star, title: "Bewertungsautomation", meta: "GOOGLE BEWERTUNGEN", num: "04",
+      body: "Job abgeschlossen? Automatisch geht eine persönliche SMS an den Kunden mit direktem Link zur Google-Bewertung. 6 neue Bewertungen pro Monat — ohne Aufwand.",
+      result: "Dominant in der lokalen Suche",
       span: "lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2" },
-    { icon: Shield, title: "Dreifache Garantie", meta: "SICHERHEIT", num: "05",
-      body: "Nicht zufrieden nach 30 Tagen? Volle Rückerstattung. Kostenlose Optimierung. Kein Risiko.",
-      result: "0 Risiko für Sie",
+    { icon: Shield, title: "Ein Ansprechpartner — immer", meta: "KEIN TICKETSYSTEM", num: "05",
+      body: "Kein Ticketsystem, kein Callcenter, kein Warten. Sie haben eine direkte Handynummer und bekommen innerhalb von Stunden eine Antwort — nicht nach Tagen.",
+      result: "Lokaler Support, der funktioniert",
       span: "lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3" },
   ];
   return (
     <Section id="loesung" dots dotsBg="#111111">
       <Stagger className="text-center mb-14">
         <FadeUp><SectionLabel>Die Lösung</SectionLabel></FadeUp>
-        <FadeUp><SectionHeading center>Schneller als alle anderen — automatisch</SectionHeading></FadeUp>
-        <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Ein System das für Sie antwortet, nachfasst und qualifiziert — während Sie auf der Baustelle sind.</p></FadeUp>
+        <FadeUp><SectionHeading center>Website. Termine. Angebote. Bewertungen.</SectionHeading></FadeUp>
+        <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Alles was ein Handwerksbetrieb digital braucht — aus einer Hand, in 7 Tagen, mit einem Ansprechpartner.</p></FadeUp>
       </Stagger>
       {/* 21st.dev BentoGrid: mixed row/col spans */}
       <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:auto-rows-[minmax(140px,auto)] lg:grid-cols-3 gap-4">
@@ -541,29 +540,29 @@ function Solution() {
 // ─── HOW IT WORKS — Timeline + GlowCard ──────────────────────────────────────
 function HowItWorks() {
   const steps = [
-    { n:1, icon: Phone, title:"Erstgespräch", duration:"20 Min · kostenlos", meta:"Schritt 1",
-      body:"Wir schauen gemeinsam wie viele Anfragen gerade verloren gehen und planen Ihr System.",
-      result:"Klarheit über Ihr Potenzial",
-      items:["Anfragen-Situation analysieren","Verlust-Punkte identifizieren","System planen"] },
-    { n:2, icon: Layers, title:"Einrichtung", duration:"3–5 Tage", meta:"Schritt 2",
-      body:"Speed to Lead + Follow-up werden komplett eingerichtet. Texte, Nummer, Automation — Sie müssen NICHTS selbst machen.",
-      result:"Fertig eingerichtet, ohne Aufwand",
-      items:["Missed Call → WhatsApp einrichten","Follow-up Sequenz aufbauen","Texte auf Ihren Betrieb anpassen"] },
-    { n:3, icon: Users, title:"Live schalten", duration:"30 Min", meta:"Schritt 3",
-      body:"Wir testen gemeinsam einen Testanruf, schauen dass alles funktioniert — und schalten live.",
-      result:"System läuft sofort",
-      items:["Test-Anruf durchführen","Google Sheet zeigen","System aktivieren"] },
-    { n:4, icon: Zap, title:"Support + Begleitung", duration:"Laufend", meta:"Schritt 4",
-      body:"10 Tage WhatsApp-Support nach Go-Live. Texte optimieren bis die Conversion stimmt.",
-      result:"Kein Auftrag geht mehr verloren",
-      items:["10 Tage WhatsApp-Support","Texte optimieren","24h Antwortzeit garantiert"] },
+    { n:1, icon: Phone, title:"Kostenloses Gespräch", duration:"20 Min · kostenlos", meta:"Schritt 1",
+      body:"Wir reden 20 Minuten. Sie erklären Ihren Betrieb, Ihre Leistungen, Ihre Region. Ich zeige Ihnen eine fertige Demo-Website von einem ähnlichen Betrieb.",
+      result:"Klarheit was Sie bekommen",
+      items:["Betrieb und Leistungen besprechen","Demo-Website live ansehen","Paket wählen und Ablauf klären"] },
+    { n:2, icon: Layers, title:"Website-Aufbau", duration:"5–7 Tage", meta:"Schritt 2",
+      body:"Sie schicken mir Fotos, Leistungen und Kontaktdaten. Ich baue die komplette Website. Sie müssen NICHTS selbst machen.",
+      result:"Website fertig ohne Ihren Aufwand",
+      items:["Inhalte und Fotos sammeln (30 Min)","Ich baue alles — Sie warten","Korrekturschleife: 1–2 kleine Änderungen"] },
+    { n:3, icon: Users, title:"Abnahme & Go-Live", duration:"30 Min", meta:"Schritt 3",
+      body:"Wir schauen die fertige Website gemeinsam durch. Letzte Anpassungen. Dann geht sie live — mit echter Domain, Hosting, Google Maps und allem.",
+      result:"Ihre Website ist online",
+      items:["Website gemeinsam durchgehen","Domain und Hosting einrichten","Live schalten + Google anmelden"] },
+    { n:4, icon: Zap, title:"Betreuung & Wachstum", duration:"Monatlich", meta:"Schritt 4",
+      body:"Ich kümmere mich um Hosting, Updates und technische Pflege. Monatlicher Check-in. Falls etwas geändert werden soll — eine WhatsApp genügt.",
+      result:"Sie konzentrieren sich auf die Arbeit",
+      items:["Hosting & technische Pflege","Änderungen per WhatsApp","Monatlicher Kurz-Check-in"] },
   ];
   return (
     <Section className="bg-[#161616]" dots dotsBg="#161616">
       <Stagger className="text-center mb-14">
         <FadeUp><SectionLabel>Der Prozess</SectionLabel></FadeUp>
-        <FadeUp><SectionHeading center>In 5 Tagen live — Sie müssen nichts tun</SectionHeading></FadeUp>
-        <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Einmal Gespräch, einmal freigeben — dann läuft das System für immer.</p></FadeUp>
+        <FadeUp><SectionHeading center>In 7 Tagen live — ohne dass Sie etwas tun</SectionHeading></FadeUp>
+        <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Kein Monatelange Wartezeiten, kein hin und her. Einmal besprechen, einmal freigeben — fertig.</p></FadeUp>
       </Stagger>
 
       {/* Vertical timeline */}
@@ -631,8 +630,8 @@ function ROI() {
     <Section dots dotsBg="#111111">
       <Stagger className="text-center mb-12">
         <FadeUp><SectionLabel>Die Rechnung</SectionLabel></FadeUp>
-        <FadeUp><SectionHeading center>Ein verpasster Auftrag kostet mehr als unser System</SectionHeading></FadeUp>
-        <FadeUp><p className="text-zinc-400 text-sm md:text-base max-w-lg mx-auto">Keine Theorie. Echte Zahlen. Schon 2 gewonnene Aufträge mehr pro Monat zahlen alles zurück.</p></FadeUp>
+        <FadeUp><SectionHeading center>Was kostet Sie eine schlechte Online-Präsenz wirklich?</SectionHeading></FadeUp>
+        <FadeUp><p className="text-zinc-400 text-sm md:text-base max-w-lg mx-auto">Keine Theorie. Echte Zahlen. Schon 1–2 Aufträge mehr pro Monat zahlen alles zurück.</p></FadeUp>
       </Stagger>
 
       <div className="max-w-5xl mx-auto grid lg:grid-cols-3 gap-5">
@@ -647,11 +646,11 @@ function ROI() {
                 <span className="text-xs font-bold uppercase tracking-widest text-zinc-600">Ohne System</span>
               </div>
               {[
-                { icon: Phone, text: "Anruf verpasst" },
-                { icon: Clock, text: "47h bis zur Antwort" },
-                { icon: X, text: "Kein Follow-up" },
-                { icon: AlertTriangle, text: "Konkurrenz antwortet zuerst" },
-                { icon: BarChart2, text: "Kein Überblick" },
+                { icon: AlertTriangle, text: "Alte Website aus 2014" },
+                { icon: Phone, text: "Anrufe die nicht ankommen" },
+                { icon: Clock, text: "45 Min pro Angebot" },
+                { icon: Star, text: "12 Google-Bewertungen" },
+                { icon: X, text: "Unsichtbar auf Google" },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-3 text-zinc-600">
                   <Icon className="w-4 h-4 shrink-0" />
@@ -660,7 +659,7 @@ function ROI() {
               ))}
               <div className="mt-auto pt-4 border-t border-zinc-800">
                 <p className="text-zinc-600 text-xs font-bold uppercase tracking-wider">Verlorenes Potenzial</p>
-                <p className="text-xl font-black text-zinc-600 mt-1">Aufträge & Umsatz</p>
+                <p className="text-xl font-black text-zinc-600 mt-1">Aufträge die zur Konkurrenz gehen</p>
               </div>
             </motion.div>
             {/* With */}
@@ -671,11 +670,11 @@ function ROI() {
                 <span className="text-xs font-bold uppercase tracking-widest text-red-400">Mit WerkstattKLAR</span>
               </div>
               {[
-                { icon: Zap, text: "60 Sek. Antwort automatisch" },
-                { icon: TrendingUp, text: "Immer als Erster" },
-                { icon: RefreshCw, text: "Follow-up läuft automatisch" },
-                { icon: MessageSquare, text: "Intelligente Qualifizierung" },
-                { icon: LayoutDashboard, text: "Alle Leads im Blick" },
+                { icon: Zap, text: "Moderne Website in 7 Tagen" },
+                { icon: Phone, text: "Terminbuchung automatisch" },
+                { icon: FileText, text: "Angebot in 5 Minuten" },
+                { icon: Star, text: "6+ Bewertungen / Monat" },
+                { icon: TrendingUp, text: "Seite 1 bei Google lokal" },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-3 text-zinc-200">
                   <Icon className="w-4 h-4 text-red-400 shrink-0" />
@@ -683,8 +682,8 @@ function ROI() {
                 </div>
               ))}
               <div className="mt-auto pt-4 border-t border-red-500/10">
-                <p className="text-red-400 text-xs font-bold uppercase tracking-wider">Maximales Potenzial</p>
-                <p className="text-xl font-black text-white mt-1">Schneller. Mehr Aufträge.</p>
+                <p className="text-red-400 text-xs font-bold uppercase tracking-wider">Mit WerkstattKLAR</p>
+                <p className="text-xl font-black text-white mt-1">Sichtbar. Erreichbar. Professionell.</p>
               </div>
             </motion.div>
           </div>
@@ -697,15 +696,15 @@ function ROI() {
               transition={{ type: "spring", stiffness: 300 }}
               className="rounded-2xl border border-red-500/25 bg-gradient-to-br from-red-950/30 to-zinc-900/60 p-6 flex flex-col items-center justify-center text-center flex-1 [box-shadow:0_0_40px_rgba(239,68,68,0.06)_inset]">
               <FeatureIcon icon={TrendingUp} color="red" size="lg" className="mb-3" />
-              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Reaktionszeit</p>
-              <p className="text-5xl font-black text-white leading-none">60s</p>
-              <p className="text-zinc-400 text-sm font-semibold mt-1">statt 47 Stunden</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-1">Neue Bewertungen</p>
+              <p className="text-5xl font-black text-white leading-none">+72</p>
+              <p className="text-zinc-400 text-sm font-semibold mt-1">pro Jahr im Schnitt</p>
             </motion.div>
             <motion.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300 }}
               className="rounded-2xl border border-white/[0.07] bg-white/[0.03] p-5 flex flex-col items-center justify-center text-center">
               <FeatureIcon icon={Euro} color="neutral" size="sm" className="mb-2" />
-              <p className="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-1">Einmalig + monatlich</p>
-              <p className="text-3xl font-black text-white">1.490 €</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-1">Ab einmalig</p>
+              <p className="text-3xl font-black text-white">999 €</p>
             </motion.div>
           </div>
         </FadeUp>
@@ -715,85 +714,124 @@ function ROI() {
 }
 
 // ─── VALUE STACK ──────────────────────────────────────────────────────────────
+function PricingItem({ text, checked }: { text: string; checked: boolean }) {
+  return (
+    <motion.div whileHover={{ x: 4 }} className="flex items-center gap-3">
+      <span className={cn("grid w-5 h-5 place-content-center rounded-full text-xs shrink-0 transition-colors",
+        checked ? "bg-red-600/90 text-white" : "bg-zinc-800 text-zinc-500")}>
+        {checked ? <Check className="w-3 h-3" /> : <X className="w-3 h-3" />}
+      </span>
+      <span className={cn("text-sm", checked ? "text-zinc-200" : "text-zinc-600")}>{text}</span>
+    </motion.div>
+  );
+}
+
 function ValueStack() {
-  const included = [
-    { text:"Speed to Lead komplett eingerichtet", checked:true },
-    { text:"Missed Call → WhatsApp/SMS in 60 Sek.", checked:true },
-    { text:"Website-Formular → Sofortantwort", checked:true },
-    { text:"Follow-up Sequenz (Tag 1 / 3 / 7)", checked:true },
-    { text:"Intelligente Qualifizierung nach Auftragstyp", checked:true },
-    { text:"Benachrichtigung an Sie mit allen Infos", checked:true },
-    { text:"Google Sheets Mini-CRM (alle Leads übersichtlich)", checked:true },
-    { text:"Texte auf Ihren Betrieb zugeschnitten", checked:true },
-    { text:"Einrichtung + Go-Live Call", checked:true },
-    { text:"10 Tage Support via WhatsApp (24h)", checked:true },
+  const baseItems = [
+    "Professionelle, mobiloptimierte Website",
+    "Startseite mit klarer Botschaft & CTA",
+    "Leistungsübersicht & Referenzen",
+    "Kontaktformular mit Bestätigungsmail",
+    "Google Maps Einbindung",
+    "Impressum & Datenschutz",
+    "Hosting & technische Pflege inklusive",
+    "Fertig in 7 Tagen",
+    "1 direkter Ansprechpartner",
   ];
-  const bonuses = [
-    { text:"Bonus: Monatlicher Report — wie viele Anfragen, wie viele gewonnen", checked:true },
-    { text:"Bonus: Optimierung der Texte nach 30 Tagen (300 € Wert)", checked:true },
-    { text:"Bonus: Zweiter Trigger-Kanal (z.B. Formular oder WhatsApp) (200 € Wert)", checked:true },
+  const proItems = [
+    ...baseItems,
+    "Terminbuchung direkt auf der Website",
+    "SMS-Erinnerung 24h vor dem Termin",
+    "Nachfass-Mail nach dem Termin",
+    "KI-Angebotserstellung als PDF (5 Min statt 45)",
+    "Bewertungsautomation nach Jobabschluss",
+    "Automatische Erinnerung nach 5 Tagen",
+    "Alle Tool-Kosten inklusive (Make, Cal, Claude API)",
   ];
+
   return (
     <Section id="preise" className="bg-[#161616]" dots dotsBg="#161616">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <Stagger className="text-center mb-10">
-          <FadeUp><SectionLabel>Das Angebot</SectionLabel></FadeUp>
-          <FadeUp><SectionHeading center>„Schneller als alle anderen"</SectionHeading></FadeUp>
+          <FadeUp><SectionLabel>Preise</SectionLabel></FadeUp>
+          <FadeUp><SectionHeading center>Einfach. Transparent. Ohne versteckte Kosten.</SectionHeading></FadeUp>
+          <FadeUp><p className="text-zinc-400 text-sm md:text-base max-w-lg mx-auto">Zwei Pakete. Ein Ansprechpartner. Kein Agentur-Bullshit.</p></FadeUp>
         </Stagger>
-        <FadeUp>
-          <motion.div initial="idle" whileHover="active" variants={{ idle: {}, active: {} }}>
-            <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 group overflow-hidden">
-              {/* Red radial gradient accent */}
-              <div className="absolute inset-0 pointer-events-none opacity-60"
-                style={{ background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(239,68,68,0.12), transparent 70%)" }} />
 
-              <div className="relative z-10 p-8">
-                {/* Header — price block */}
-                <div className="pb-7 mb-7 border-b border-zinc-800/80">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Gesamtwert: 3.200 €</span>
-                    <motion.span animate={{ scale:[1,1.05,1] }} transition={{ duration:2, repeat:Infinity }}
-                      className="bg-red-600 text-white text-xs font-black px-2.5 py-0.5 rounded-full">Preisvorteil sichern</motion.span>
+        <div className="grid md:grid-cols-2 gap-5">
+          {/* Package 1 — Website */}
+          <FadeUp>
+            <motion.div initial="idle" whileHover="active" variants={{ idle: {}, active: {} }} className="h-full">
+              <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 group overflow-hidden h-full flex flex-col">
+                <div className="absolute inset-0 pointer-events-none opacity-40"
+                  style={{ background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(239,68,68,0.08), transparent 70%)" }} />
+                <div className="relative z-10 p-8 flex flex-col flex-1">
+                  <div className="pb-6 mb-6 border-b border-zinc-800/80">
+                    <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest block mb-3">Paket 1</span>
+                    <h3 className="text-2xl font-black text-white mb-4">Website</h3>
+                    <div className="flex items-end gap-3 mb-4">
+                      <span className="text-5xl font-black text-white">999 €</span>
+                      <span className="text-zinc-500 text-sm mb-2">einmalig</span>
+                    </div>
+                    <div className="bg-zinc-800/40 border border-zinc-700/40 rounded-xl p-3 text-sm text-zinc-400">
+                      danach <span className="text-white font-bold">49 €/Monat</span> · Hosting & Pflege
+                    </div>
                   </div>
-                  <div className="flex items-end gap-3 mb-5">
-                    <span className="text-6xl font-black text-white">1.490 €</span>
-                    <span className="text-zinc-600 line-through text-2xl mb-2">3.200 €</span>
+                  <div className="space-y-3 mb-8 flex-1">
+                    {baseItems.map(t => <PricingItem key={t} text={t} checked={true} />)}
                   </div>
-                  <div className="bg-zinc-800/40 border border-zinc-700/40 rounded-xl p-4 text-sm text-zinc-400">
-                    Einmalig <span className="text-white font-bold">1.490 €</span> Setup · danach <span className="text-white font-bold">199 €/Monat</span> Betreuung
+                  <div className="space-y-3 pt-4 border-t border-zinc-800/80">
+                    <CTA size="md" className="w-full justify-center">Gespräch buchen <ArrowRight className="w-4 h-4" /></CTA>
+                    <div className="flex items-center justify-center gap-1.5 text-xs text-zinc-700">
+                      <Lock className="w-3 h-3" /> DSGVO-konform
+                    </div>
                   </div>
                 </div>
-
-                {/* Included items */}
-                <div className="space-y-3 mb-7">
-                  {[...included, ...bonuses].map(({ text, checked }) => (
-                    <motion.div key={text} whileHover={{ x: 4 }} className="flex items-center gap-3">
-                      <span className={cn("grid w-5 h-5 place-content-center rounded-full text-xs shrink-0 transition-colors",
-                        checked ? "bg-red-600/90 text-white" : "bg-zinc-800 text-zinc-500")}>
-                        {checked ? <Check className="w-3 h-3" /> : <X className="w-3 h-3" />}
-                      </span>
-                      <span className={cn("text-sm", checked ? "text-zinc-200" : "text-zinc-600 line-through")}>{text}</span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* CTA block */}
-                <div className="space-y-3 pt-4 border-t border-zinc-800/80">
-                  <div className="flex justify-center">
-                    <KickerBadge>Nur 3 Plätze/Monat — <span className="text-white font-bold">2 frei für April</span></KickerBadge>
-                  </div>
-                  <CTA size="lg" className="w-full justify-center">Jetzt Platz sichern <ArrowRight className="w-5 h-5" /></CTA>
-                  <div className="flex items-center justify-center gap-1.5 text-xs text-zinc-700">
-                    <Lock className="w-3 h-3" /> DSGVO-konform · Ihre Daten bleiben bei Ihnen
-                  </div>
-                </div>
+                <div className="pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-red-500/[0.02]" />
               </div>
+            </motion.div>
+          </FadeUp>
 
-              {/* Hover overlay */}
-              <div className="pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-red-500/[0.02]" />
-            </div>
-          </motion.div>
-        </FadeUp>
+          {/* Package 2 — Website + Automationen */}
+          <FadeUp>
+            <motion.div initial="idle" whileHover="active" variants={{ idle: {}, active: {} }} className="h-full">
+              <div className="relative rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-950/20 to-zinc-900/50 group overflow-hidden h-full flex flex-col [box-shadow:0_0_60px_rgba(239,68,68,0.08)_inset]">
+                <div className="absolute inset-0 pointer-events-none opacity-60"
+                  style={{ background: "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(239,68,68,0.14), transparent 70%)" }} />
+                <div className="relative z-10 p-8 flex flex-col flex-1">
+                  <div className="pb-6 mb-6 border-b border-red-500/10">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Paket 2</span>
+                      <motion.span animate={{ scale:[1,1.05,1] }} transition={{ duration:2, repeat:Infinity }}
+                        className="bg-red-600 text-white text-xs font-black px-2.5 py-0.5 rounded-full">Empfohlen</motion.span>
+                    </div>
+                    <h3 className="text-2xl font-black text-white mb-4">Website + Automationen</h3>
+                    <div className="flex items-end gap-3 mb-4">
+                      <span className="text-5xl font-black text-white">1.999 €</span>
+                      <span className="text-zinc-500 text-sm mb-2">einmalig</span>
+                    </div>
+                    <div className="bg-red-950/30 border border-red-500/20 rounded-xl p-3 text-sm text-zinc-300">
+                      danach <span className="text-white font-bold">129 €/Monat</span> · inkl. aller Tool-Kosten
+                    </div>
+                  </div>
+                  <div className="space-y-3 mb-8 flex-1">
+                    {proItems.map(t => <PricingItem key={t} text={t} checked={true} />)}
+                  </div>
+                  <div className="space-y-3 pt-4 border-t border-red-500/10">
+                    <div className="flex justify-center">
+                      <KickerBadge>Nur 3 Plätze/Monat — <span className="text-white font-bold">2 frei im Mai</span></KickerBadge>
+                    </div>
+                    <CTA size="md" className="w-full justify-center">Jetzt Platz sichern <ArrowRight className="w-4 h-4" /></CTA>
+                    <div className="flex items-center justify-center gap-1.5 text-xs text-zinc-700">
+                      <Lock className="w-3 h-3" /> DSGVO-konform · Ihre Daten bleiben bei Ihnen
+                    </div>
+                  </div>
+                </div>
+                <div className="pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-red-500/[0.02]" />
+              </div>
+            </motion.div>
+          </FadeUp>
+        </div>
       </div>
     </Section>
   );
@@ -803,17 +841,17 @@ function ValueStack() {
 function Guarantees() {
   const items = [
     { icon: Trophy, emoji:"🏆", title:"30-Tage-Zufriedenheitsgarantie", label:"Ergebnis-Garantie",
-      body:"Wenn Sie nach 30 Tagen nicht spürbar besser dastehen als vorher - erstatten wir den vollen Betrag zurück. Ohne Diskussion.",
+      body:"Wenn Sie nach 30 Tagen nicht spürbar zufriedener mit Ihrer Online-Präsenz sind — volle Rückerstattung. Ohne Diskussion, ohne Bedingungen.",
       condition:"Ich arbeite so lange weiter, bis Sie zufrieden sind.",
       result:"0 € Risiko für Sie" },
-    { icon: Zap, emoji:"⚡", title:"Erste Ergebnisse in 7 Tagen", label:"Schnell-Start-Garantie",
-      body:"Nach 7 Tagen ist Ihre erste Vorlage live und Sie erstellen Ihr erstes Angebot in unter 3 Minuten. Garantiert.",
-      condition:"Keine Bedingungen.",
-      result:"Direkt spürbare Verbesserung" },
-    { icon: RefreshCw, emoji:"♾️", title:"Lebenslanger Support", label:"Zukunfts-Garantie",
-      body:"Wenn irgendwann etwas nicht funktioniert — wir fixen es kostenlos. Kein Ablaufdatum. Für immer.",
-      condition:"Lebenslang. Ohne Ausnahme.",
-      result:"Für immer abgesichert" },
+    { icon: Zap, emoji:"⚡", title:"Fertig in 7 Tagen — garantiert", label:"Tempo-Garantie",
+      body:"Ihre Website geht innerhalb von 7 Werktagen live. Wenn ich es nicht schaffe, bekommen Sie 200 € zurück. Versprochen.",
+      condition:"7 Tage. Nicht 7 Wochen. Nicht 3 Monate.",
+      result:"Pünktlich oder Sie bekommen Geld zurück" },
+    { icon: RefreshCw, emoji:"♾️", title:"Laufende Betreuung inklusive", label:"Support-Garantie",
+      body:"Solange Sie Kunde sind — direkter Kontakt, keine Tickets, keine Warteliste. Änderung per WhatsApp, Umsetzung innerhalb von 48 Stunden.",
+      condition:"Eine Handynummer. Immer erreichbar.",
+      result:"Support wie von einem Mitarbeiter" },
   ];
   return (
     <Section className="bg-[#161616]" dots dotsBg="#161616">
@@ -892,7 +930,7 @@ function Urgency() {
         <Stagger>
           <FadeUp><SectionLabel>Zeitlich begrenzt</SectionLabel></FadeUp>
           <FadeUp><SectionHeading center>Ihr Preisvorteil läuft ab in:</SectionHeading></FadeUp>
-          <FadeUp><p className="text-zinc-400 mb-10 text-sm md:text-base">Der Setup-Preis von <span className="text-white font-semibold">1.490 €</span> gilt nur noch für kurze Zeit. Danach: 1.990 €.</p></FadeUp>
+          <FadeUp><p className="text-zinc-400 mb-10 text-sm md:text-base">Der Einführungspreis von <span className="text-white font-semibold">999 €</span> bzw. <span className="text-white font-semibold">1.999 €</span> gilt nur für die ersten Kunden in der Region.</p></FadeUp>
         </Stagger>
         {!expired ? (
           <div className="flex items-center justify-center gap-3 md:gap-5 mb-10">
@@ -937,7 +975,7 @@ function Urgency() {
             Rabatt abgelaufen. Aktueller Preis: <span className="text-white font-bold">1.990 €</span>
           </div>
         )}
-        <p className="text-zinc-600 text-sm mb-8">Nach Ablauf gilt der reguläre Preis von 1.990 €</p>
+        <p className="text-zinc-600 text-sm mb-8">Danach gilt der reguläre Preis.</p>
         <CTA size="lg">Jetzt zum Rabattpreis sichern <ArrowRight className="w-5 h-5" /></CTA>
       </div>
     </Section>
@@ -948,28 +986,28 @@ function Urgency() {
 function Testimonials() {
   const testimonials = [
     {
-      author: { name: "Thomas M.", handle: "Elektriker · Soloselbstständig", avatar: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=100&h=100&fit=crop&crop=faces" },
-      text: "Ich lag unter einer Schalttafel und hab den Anruf verpasst. 40 Sekunden später hat mein System dem Kunden geschrieben. Er hat mir am Abend gesagt: 'Ich hab noch zwei andere angerufen — Sie waren der Einzige der sofort geantwortet hat.'",
+      author: { name: "Thomas M.", handle: "Elektriker · Heilbronn", avatar: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=100&h=100&fit=crop&crop=faces" },
+      text: "Meine alte Website war aus 2013. Ich hab sie nie angefasst weil ich nicht wusste wie. Jetzt hab ich eine die wirklich gut aussieht — und ich hab nichts selbst gemacht. War in 6 Tagen fertig.",
     },
     {
-      author: { name: "Stefan W.", handle: "Maler · 4 Mitarbeiter", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" },
-      text: "Das Follow-up nach dem Angebot war vorher immer das Ding das ich vergessen hab. Jetzt läuft es automatisch. Letzte Woche hat ein Kunde auf Tag-3-Nachricht geantwortet und sofort Ja gesagt. 2.400 € Auftrag.",
+      author: { name: "Stefan W.", handle: "Maler · Stuttgart-Süd", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces" },
+      text: "Das Angebot früher: Word aufmachen, Preise raussuchen, PDF erstellen, Mail schreiben. 40 Minuten. Jetzt: Formular kommt rein, PDF ist fertig, ich drücke auf Senden. 5 Minuten.",
     },
     {
-      author: { name: "Michael K.", handle: "SHK · 6 Mitarbeiter", avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=faces" },
-      text: "Früher hab ich Anrufe verpasst und gehofft dass sie nochmal anrufen. Jetzt weiß ich: Das System schreibt sofort zurück. Ich muss mir keine Sorgen mehr machen.",
+      author: { name: "Michael K.", handle: "SHK · Ludwigsburg", avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=faces" },
+      text: "Wir haben jetzt 67 Google-Bewertungen. Vorher waren es 14. Das System schreibt Kunden nach jedem Job automatisch an. Ich muss gar nichts machen — die Bewertungen kommen einfach.",
     },
     {
-      author: { name: "Andreas B.", handle: "Zimmerer · 3 Mitarbeiter", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces" },
-      text: "Ich hab in den ersten 2 Wochen 3 Aufträge gewonnen die ich vorher 100% verloren hätte. Der ROI war nach dem ersten Monat schon klar.",
+      author: { name: "Andreas B.", handle: "Zimmerer · Öhringen", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces" },
+      text: "Kunden können jetzt direkt auf meiner Website einen Termin buchen. Ich bekomme eine Mail und der Kunde bekommt eine SMS-Erinnerung. Ich hab seit 3 Monaten keine Anfrage mehr verpasst.",
     },
     {
-      author: { name: "Klaus R.", handle: "Dachdecker · 8 Mitarbeiter", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces" },
-      text: "Die Einrichtung war in 5 Tagen erledigt. Ich musste einmal einen Test-Anruf machen — fertig. Seitdem läuft es einfach.",
+      author: { name: "Klaus R.", handle: "Dachdecker · Bad Mergentheim", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces" },
+      text: "Was mich überzeugt hat: Ich hab eine Demo-Website gesehen von einem Betrieb der ähnlich aufgestellt ist wie ich. Da wusste ich sofort — das ist es was ich will.",
     },
     {
-      author: { name: "Frank H.", handle: "Schreiner · 2 Mitarbeiter", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=faces" },
-      text: "Mein Mitbewerber ist einen Kilometer entfernt. Jetzt ist der Unterschied: Ich antworte als Erster. Das reicht.",
+      author: { name: "Frank H.", handle: "Schreiner · Heilbronn", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=faces" },
+      text: "Ich hab 20 Jahre lang keine Website gebraucht. Dann hat mein Sohn Google Maps geöffnet und mir gezeigt dass mein Konkurrent 80 Bewertungen hat und ich 9. Da hab ich angerufen.",
     },
   ];
   return (
@@ -993,16 +1031,16 @@ function Testimonials() {
 
 // ─── FAQ ─────────────────────────────────────────────────────────────────────
 const faqs = [
-  { q:"Was kostet das genau?", a:"1.490 € einmalig für Setup und Einrichtung. Danach 199 €/Monat für Betreuung, Support und Updates. Keine versteckten Kosten." },
-  { q:"Wie lange dauert die Einrichtung?", a:"3–5 Tage. Nach einem kurzen Erstgespräch richte ich alles ein. Sie müssen nur einmal einen Test-Anruf mit mir machen — das war's." },
-  { q:"Was passiert wenn ich gerade auf der Baustelle bin?", a:"Genau dann funktioniert das System. Ihr Handy klingelt, Sie können nicht ran — in 60 Sekunden bekommt der Kunde automatisch eine WhatsApp. Sie bekommen gleichzeitig eine Benachrichtigung mit allen Infos." },
-  { q:"Welche Software brauche ich?", a:"Sipgate oder Twilio für die Nummer (ca. 10 €/Monat), WhatsApp Business API (ca. 50 €/Monat), Make.com (ca. 10 €/Monat), Google Sheets (kostenlos). Ich richte alles ein." },
-  { q:"Was wenn der Kunde nicht auf WhatsApp antwortet?", a:"Das System schickt nach 2 Stunden automatisch eine zweite Nachricht. Nach 24 Stunden ohne Antwort werden Sie benachrichtigt um manuell nachzufassen." },
-  { q:"Funktioniert das auch für andere Kanäle?", a:"Ja. Wir starten mit Missed Call. Auf Wunsch ergänzen wir Website-Formular, Instagram DM oder Google My Business — je nach wo Ihre Anfragen herkommen." },
-  { q:"Was wenn ich nicht zufrieden bin?", a:"Dann arbeite ich kostenlos weiter bis Sie zufrieden sind. Oder: Volle Rückerstattung der Setup-Kosten. Ihr Risiko ist 0." },
-  { q:"Brauche ich technisches Wissen?", a:"Nein. Ich baue und richte alles ein. Sie müssen nichts selbst konfigurieren. Nach Go-Live: Sie kriegen eine WhatsApp wenn eine Anfrage kommt — das war's." },
-  { q:"Was ist mit Datenschutz?", a:"Alle Daten bleiben bei IHNEN — in Ihrem eigenen Account. DSGVO-konform. Ich habe nach Projektabschluss keinen Zugriff mehr." },
-  { q:"Lohnt sich das wirklich?", a:"Ein Elektriker verdient im Schnitt 320 € pro Auftrag. Wenn das System pro Monat 2 Aufträge rettet die Sie sonst verloren hätten: 640 € mehr. Das System kostet 199 €/Monat. Die Rechnung ist einfach." },
+  { q:"Was kostet das genau?", a:"Paket 1 (Website): 999 € einmalig, dann 49 €/Monat für Hosting und Pflege. Paket 2 (Website + Automationen): 1.999 € einmalig, dann 129 €/Monat — darin sind alle Tool-Kosten inklusive (Make.com, Cal.com, Claude API). Keine versteckten Kosten." },
+  { q:"Wirklich fertig in 7 Tagen?", a:"Ja. Sie schicken mir Fotos, Leistungen und Kontaktdaten — das dauert etwa 30 Minuten. Den Rest mache ich. Nach 5–7 Werktagen geht die Website live. Wenn ich es nicht schaffe, bekommen Sie 200 € zurück." },
+  { q:"Ich habe schon eine Website — was dann?", a:"Kein Problem. Wir schauen sie gemeinsam an. Wenn sie grundsätzlich noch zu retten ist, optimieren wir sie. Wenn nicht, bauen wir eine neue. Das klären wir im kostenlosen Erstgespräch." },
+  { q:"Für welche Handwerker ist das gedacht?", a:"Für Betriebe mit 1–15 Mitarbeitern im Raum Heilbronn und Stuttgart: Elektriker, Maler, Sanitär/Heizung, Schreiner, Fliesenleger, Dachdecker — alle die Kunden vor Ort bedienen und mehr Anfragen wollen." },
+  { q:"Was wenn ich keine Ahnung von Technik habe?", a:"Das ist der Normalfall. Sie müssen gar nichts selbst einrichten oder verstehen. Sie sagen mir was Sie wollen — ich setze es um. Änderungen danach: per WhatsApp schreiben, innerhalb von 48h erledigt." },
+  { q:"Wie funktioniert die Terminbuchung genau?", a:"Kunden klicken auf Ihrer Website auf 'Termin buchen', wählen einen Slot, geben Kontaktdaten an. Sie bekommen sofort eine Mail mit allen Infos. Der Kunde bekommt eine Bestätigung und 24 Stunden vorher eine SMS-Erinnerung." },
+  { q:"Wie bringt die Bewertungsautomation mehr Bewertungen?", a:"Wenn Sie einen Job als abgeschlossen markieren, schickt das System automatisch eine persönliche Mail und SMS an den Kunden — mit direktem Link zur Google-Bewertungsmaske. Nach 5 Tagen ohne Reaktion geht eine sanfte Erinnerung raus. Ein Betrieb mit 3 Jobs pro Woche sammelt so 6+ neue Bewertungen pro Monat." },
+  { q:"Was wenn ich nicht zufrieden bin?", a:"Dann arbeite ich kostenlos weiter bis Sie es sind. Oder ich erstatte den vollen Betrag zurück — ohne Diskussion. Das Risiko liegt bei mir, nicht bei Ihnen." },
+  { q:"Was ist mit Datenschutz?", a:"Alle Daten gehören Ihnen — in Ihren eigenen Accounts. DSGVO-konform. Impressum und Datenschutzerklärung sind auf der Website inklusive." },
+  { q:"Wie läuft das Erstgespräch ab?", a:"20 Minuten per Telefon oder Video. Ich zeige Ihnen eine fertige Demo-Website von einem ähnlichen Betrieb. Sie stellen Fragen. Kein Verkaufsdruck. Wenn es passt — super. Wenn nicht — kein Problem." },
 ];
 
 function FAQ() {
@@ -1062,12 +1100,11 @@ function FinalCTA() {
           <FadeUp><SectionLabel>Jetzt starten</SectionLabel></FadeUp>
           <FadeUp>
             <h2 className="text-3xl md:text-5xl font-black mb-4">
-              Kein Anruf mehr{" "}
-              <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">verloren</span>
-              {" "}— ab heute.
+              Bereit für eine Website{" "}
+              <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">die wirklich funktioniert?</span>
             </h2>
           </FadeUp>
-          <FadeUp><p className="text-zinc-400 text-lg mb-8 max-w-xl mx-auto">20 Minuten Gespräch — kostenlos, keine Verpflichtung. Wir schauen gemeinsam wie viele Aufträge Sie gerade verlieren. <span className="text-white font-semibold">Nächster freier Platz: April.</span></p></FadeUp>
+          <FadeUp><p className="text-zinc-400 text-lg mb-8 max-w-xl mx-auto">20 Minuten Gespräch — kostenlos, keine Verpflichtung. Ich zeige Ihnen eine fertige Demo und wir schauen ob es passt. <span className="text-white font-semibold">Nur noch 2 freie Plätze im Mai.</span></p></FadeUp>
           <FadeUp className="inline-flex mb-6">
             <motion.div whileHover={{ scale:1.04 }} whileTap={{ scale:.97 }}>
               <CTA size="lg">Erstgespräch buchen <Phone className="w-5 h-5" /></CTA>
@@ -1103,7 +1140,7 @@ function Footer() {
         <div className="grid md:grid-cols-3 gap-10 mb-10">
           <div>
             <div className="text-xl font-black mb-2">Werkstatt<span className="text-red-500">KLAR</span></div>
-            <p className="text-zinc-500 text-sm leading-relaxed">Schneller als alle anderen.<br />Kein Auftrag geht mehr verloren.</p>
+            <p className="text-zinc-500 text-sm leading-relaxed">Websites und Automationen für Handwerker.<br />Region Heilbronn & Stuttgart.</p>
           </div>
           <div>
             <div className="text-sm font-semibold text-zinc-300 mb-4">Links</div>
