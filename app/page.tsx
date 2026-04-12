@@ -1166,7 +1166,7 @@ function Footer() {
           </div>
         </div>
         <div className="border-t border-white/[0.05] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-700">
-          <span>© 2025 WerkstattKLAR. Alle Rechte vorbehalten.</span>
+          <span>© 2026 WerkstattKLAR. Alle Rechte vorbehalten.</span>
           <span className="flex items-center gap-1.5"><Lock className="w-3 h-3" /> DSGVO-konform · Daten bleiben bei Ihnen</span>
         </div>
       </div>
