@@ -303,8 +303,16 @@ function TrustBar() {
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <LampContainer contentClassName="max-w-6xl mx-auto px-4 pt-36 pb-20">
+    <LampContainer contentClassName="max-w-6xl mx-auto px-4 pt-36 pb-10">
       <div className="max-w-4xl relative z-30">
+        {/* Pill above headline */}
+        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }} className="mb-6">
+          <span className="inline-flex items-center gap-2 bg-red-950/40 border border-red-500/20 rounded-full px-4 py-2 text-sm font-medium text-zinc-300">
+            <span className="w-2 h-2 rounded-full bg-red-500 shrink-0" />
+            Für deinen Handwerks-Betrieb
+          </span>
+        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6"
@@ -327,7 +335,7 @@ function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.48 }}
-          className="flex flex-col sm:flex-row gap-4 mb-10"
+          className="flex flex-col sm:flex-row gap-4 mb-4"
         >
           <CTA size="lg">Kennenlern-Gespräch buchen <ArrowRight className="w-5 h-5" /></CTA>
           <button
