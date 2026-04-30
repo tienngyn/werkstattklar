@@ -303,25 +303,6 @@ function Hero() {
             Leistungen ansehen <ArrowRight className="w-5 h-5" />
           </button>
         </motion.div>
-
-        {/* 3 Commitments */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 sm:gap-8"
-        >
-          {[
-            { icon: Zap, text: "7 Tage bis zur fertigen Website" },
-            { icon: TrendingUp, text: "2 Wochen bis zu den ersten Anfragen" },
-            { icon: Lock, text: "100% Festpreise — keine Überraschungen" },
-          ].map(({ icon: Icon, text }) => (
-            <div key={text} className="flex items-center gap-2.5">
-              <span className="grid w-5 h-5 place-content-center rounded-full bg-red-600/90 text-white shrink-0">
-                <Icon className="w-3 h-3" />
-              </span>
-              <span className="text-sm text-zinc-300 font-medium">{text}</span>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </LampContainer>
   );
