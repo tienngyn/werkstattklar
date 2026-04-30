@@ -243,25 +243,59 @@ function Navbar() {
   );
 }
 
-// ─── TRUST BAR ────────────────────────────────────────────────────────────────
-function TrustBar() {
-  const items = [
-    { icon: Zap, text: "7 Tage bis zur fertigen Website" },
-    { icon: TrendingUp, text: "2 Wochen bis zu den ersten Anfragen" },
-    { icon: Lock, text: "100% Festpreise — keine versteckten Kosten" },
-    { icon: User, text: "1 direkter Ansprechpartner" },
-  ];
+// ─── TRUST BAR — Stats mit Kreis-Ringen ──────────────────────────────────────
+function StatRing({ value, unit, desc, progress = 0.78 }: {
+  value: string; unit: string; desc: string; progress?: number;
+}) {
+  const r = 24;
+  const circ = 2 * Math.PI * r;
+  const dash = circ * progress;
   return (
-    <div className="border-y border-white/[0.05] bg-white/[0.015] py-4 overflow-hidden">
-      <Stagger className="flex gap-8 md:gap-12 items-center justify-center flex-wrap px-4 max-w-6xl mx-auto">
-        {items.map(({ icon: Icon, text }) => (
-          <FadeUp key={text}>
-            <div className="flex items-center gap-2 text-zinc-400 text-sm whitespace-nowrap">
-              <Icon className="w-4 h-4 text-red-500 shrink-0" />{text}
-            </div>
-          </FadeUp>
-        ))}
-      </Stagger>
+    <FadeUp className="h-full">
+      <motion.div
+        whileHover={{ y: -4 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-8 flex flex-col items-center gap-4 overflow-hidden h-full"
+      >
+        <div className="absolute inset-0 pointer-events-none opacity-30"
+          style={{ background: "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(239,68,68,0.18), transparent 70%)" }} />
+        {/* Ring + number */}
+        <div className="relative flex items-center gap-4 z-10">
+          <svg width="64" height="64" viewBox="0 0 64 64" className="shrink-0 -rotate-90">
+            <circle cx="32" cy="32" r={r} fill="none" stroke="rgba(239,68,68,0.15)" strokeWidth="4" />
+            <motion.circle
+              cx="32" cy="32" r={r} fill="none" stroke="#dc2626" strokeWidth="4"
+              strokeLinecap="round"
+              strokeDasharray={circ}
+              initial={{ strokeDashoffset: circ }}
+              whileInView={{ strokeDashoffset: circ - dash }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+            />
+          </svg>
+          <div className="flex flex-col">
+            <span className="text-5xl font-black text-white leading-none">{value}</span>
+            <span className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mt-1">{unit}</span>
+          </div>
+        </div>
+        {/* Description */}
+        <p className="text-base font-bold text-white text-center z-10 leading-snug">{desc}</p>
+      </motion.div>
+    </FadeUp>
+  );
+}
+
+function TrustBar() {
+  return (
+    <div className="px-4 py-14 bg-[#161616]">
+      <div className="max-w-4xl mx-auto">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatRing value="7"    unit="Tage"       desc="bis zur fertigen Website"         progress={0.78} />
+          <StatRing value="2"    unit="Wochen"     desc="bis zu den ersten Anfragen"       progress={0.55} />
+          <StatRing value="100%" unit="Festpreise" desc="keine versteckten Kosten"         progress={1}    />
+          <StatRing value="1"    unit="Person"     desc="direkter Ansprechpartner für dich" progress={0.25} />
+        </Stagger>
+      </div>
     </div>
   );
 }
