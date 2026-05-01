@@ -718,7 +718,7 @@ function StepIcon({ icon: Icon, n, scrollProgress, threshold }: {
 }) {
   const [active, setActive] = useState(false);
 
-  useMotionValueEvent(scrollProgress, "change", (v) => {
+  useMotionValueEvent(scrollProgress, "change", (v: number) => {
     setActive(v >= threshold);
   });
 
