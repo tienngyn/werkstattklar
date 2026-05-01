@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useInView, useReducedMotion, useScroll } from "framer-motion";
 import {
   CheckCircle, Clock, TrendingUp, Zap, RefreshCw, Star,
   ChevronDown, Phone, Mail, AlertTriangle, Shield,
@@ -746,6 +746,13 @@ function HowItWorks() {
       items: ["Alle Zugangsdaten gehören dir", "Domain auf deinen Namen", "Ich zeige dir wie es weitergeht"],
     },
   ];
+  // Scroll-driven line animation
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 85%", "end 20%"],
+  });
+
   return (
     <Section id="ablauf">
       <Stagger className="text-center mb-14">
@@ -754,9 +761,17 @@ function HowItWorks() {
         <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Einmal besprechen, einmal freigeben — fertig. Kein wochenlangem Hin und Her.</p></FadeUp>
       </Stagger>
 
-      <div className="relative max-w-3xl mx-auto">
-        <div className="absolute left-[27px] top-6 bottom-6 w-px pointer-events-none hidden sm:block"
-          style={{ background: "linear-gradient(to bottom, rgba(239,68,68,0.6), rgba(239,68,68,0.2) 70%, rgba(34,197,94,0.4))" }} />
+      <div ref={containerRef} className="relative max-w-3xl mx-auto">
+        {/* Track — volle Höhe, sehr dezent */}
+        <div className="absolute left-[27px] top-6 bottom-6 w-px pointer-events-none bg-zinc-800/60" />
+        {/* Fill — wächst scroll-synchron von oben nach unten */}
+        <motion.div
+          className="absolute left-[27px] top-6 bottom-6 w-px pointer-events-none origin-top"
+          style={{
+            scaleY: scrollYProgress,
+            background: "linear-gradient(to bottom, #dc2626, rgba(239,68,68,0.4) 70%, rgba(34,197,94,0.6))",
+          }}
+        />
 
         <Stagger className="flex flex-col gap-6">
           {steps.map(({ n, icon: Icon, title, duration, body, result, items }, i) => (
