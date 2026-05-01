@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView, useReducedMotion, useScroll } from "framer-motion";
+import { motion, AnimatePresence, useInView, useReducedMotion, useScroll, useSpring as useSpringMotion, useMotionValueEvent } from "framer-motion";
 import {
   CheckCircle, Clock, TrendingUp, Zap, RefreshCw, Star,
   ChevronDown, Phone, Mail, AlertTriangle, Shield,
@@ -712,6 +712,34 @@ function Guarantees() {
   );
 }
 
+// ─── STEP ICON — ploppt auf wenn die Linie es erreicht ───────────────────────
+function StepIcon({ icon: Icon, n, scrollProgress, threshold }: {
+  icon: any; n: number; scrollProgress: any; threshold: number;
+}) {
+  const scale = useSpringMotion(1, { stiffness: 550, damping: 11 });
+  const popped = useRef(false);
+
+  useMotionValueEvent(scrollProgress, "change", (v) => {
+    if (v >= threshold && !popped.current) {
+      popped.current = true;
+      scale.set(1.45);
+      setTimeout(() => scale.set(1), 200);
+    }
+    if (v < threshold - 0.07) {
+      popped.current = false; // beim Zurückscrollen zurücksetzen
+    }
+  });
+
+  return (
+    <motion.div style={{ scale }} className="relative z-20 shrink-0 bg-[#111111] rounded-2xl">
+      <FeatureIcon icon={Icon} color="red" size="md" />
+      <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-600 flex items-center justify-center text-[11px] font-black text-white leading-none shadow-lg shadow-red-900/40">
+        {n}
+      </span>
+    </motion.div>
+  );
+}
+
 // ─── ABLAUF ───────────────────────────────────────────────────────────────────
 function HowItWorks() {
   const steps = [
@@ -762,14 +790,14 @@ function HowItWorks() {
       </Stagger>
 
       <div ref={containerRef} className="relative max-w-3xl mx-auto">
-        {/* Track — volle Höhe, sehr dezent */}
-        <div className="absolute left-[27px] top-6 bottom-6 w-px pointer-events-none bg-zinc-800/60" />
-        {/* Fill — wächst scroll-synchron von oben nach unten */}
+        {/* Track — volle Höhe, dezent grau */}
+        <div className="absolute left-[27px] top-6 bottom-6 w-0.5 pointer-events-none z-[1] bg-zinc-800/70" />
+        {/* Fill — wächst scroll-synchron, rot → weiß */}
         <motion.div
-          className="absolute left-[27px] top-6 bottom-6 w-px pointer-events-none origin-top"
+          className="absolute left-[27px] top-6 bottom-6 w-0.5 pointer-events-none z-[1] origin-top"
           style={{
             scaleY: scrollYProgress,
-            background: "linear-gradient(to bottom, #dc2626, rgba(239,68,68,0.4) 70%, rgba(34,197,94,0.6))",
+            background: "linear-gradient(to bottom, #dc2626 60%, rgba(255,255,255,0.55))",
           }}
         />
 
@@ -777,14 +805,12 @@ function HowItWorks() {
           {steps.map(({ n, icon: Icon, title, duration, body, result, items }, i) => (
             <FadeUp key={n}>
               <div className="flex gap-5 sm:gap-7 items-start">
-                <motion.div
-                  initial={{ scale: 0.6, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }} transition={{ delay: i * 0.1, type: "spring", stiffness: 260, damping: 18 }}
-                  className="relative z-10 shrink-0"
-                >
-                  <FeatureIcon icon={Icon} color="red" size="md" />
-                  <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-600 flex items-center justify-center text-[11px] font-black text-white leading-none shadow-lg shadow-red-900/40">{n}</span>
-                </motion.div>
+                <StepIcon
+                  icon={Icon}
+                  n={n}
+                  scrollProgress={scrollYProgress}
+                  threshold={i === 0 ? 0.02 : i / (steps.length - 1)}
+                />
 
                 <div className="flex-1 min-w-0">
                   <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 group flex flex-col justify-between overflow-hidden">
