@@ -585,7 +585,7 @@ function Services() {
                     <img
                       src="/handwerker-laptop.png"
                       alt=""
-                      className="absolute inset-0 w-full h-full object-cover grayscale contrast-110 brightness-50 pointer-events-none select-none"
+                      className="absolute inset-0 w-full h-full object-cover grayscale contrast-110 brightness-[30%] pointer-events-none select-none"
                     />
                     {/* dunkles Vignette oben damit Text lesbar bleibt */}
                     <div className="absolute inset-0 pointer-events-none"
