@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView, useReducedMotion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, AnimatePresence, useInView, useReducedMotion, useScroll, useMotionValueEvent, useMotionValue, useTransform, animate } from "framer-motion";
 import {
   CheckCircle, Clock, TrendingUp, Zap, RefreshCw, Star,
   ChevronDown, Phone, Mail, AlertTriangle, Shield,
   ArrowRight, Users, BarChart2, FileText, X, Check,
   Lock, Quote, LayoutDashboard, Aperture, MessageSquare,
   Activity, Layers, Euro, Timer, Trophy, Globe, Send,
-  GitMerge, Bot, Wrench, User, Calendar,
+  GitMerge, Bot, Wrench, User, Calendar, ThumbsDown,
 } from "lucide-react";
 import { LampContainer } from "@/components/ui/lamp";
 import { GradientButton } from "@/components/ui/gradient-button";
@@ -242,38 +242,59 @@ function Navbar() {
 }
 
 // ─── TRUST BAR — Stats mit Kreis-Ringen ──────────────────────────────────────
-function StatRing({ value, unit, desc, progress = 0.78 }: {
-  value: string; unit: string; desc: string; progress?: number;
+function StatRing({ num, suffix = "", unit, desc, progress = 0.78 }: {
+  num: number; suffix?: string; unit: string; desc: string; progress?: number;
 }) {
-  const r = 24;
+  const r = 28;
   const circ = 2 * Math.PI * r;
   const dash = circ * progress;
+
+  const cardRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(cardRef, { once: true, amount: 0.5 });
+
+  // Count-up animation
+  const count = useMotionValue(0);
+  const display = useTransform(count, (v) => `${Math.round(v)}${suffix}`);
+
+  // Ring fill animation
+  const strokeOffset = useMotionValue(circ);
+
+  useEffect(() => {
+    if (!inView) return;
+    const c1 = animate(count, num, { duration: 1.6, ease: [0.22, 1, 0.36, 1] });
+    const c2 = animate(strokeOffset, circ - dash, { duration: 1.6, ease: [0.22, 1, 0.36, 1] });
+    return () => { c1.stop(); c2.stop(); };
+  }, [inView]); // eslint-disable-line
+
   return (
     <FadeUp className="h-full">
-      <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-8 flex flex-col items-center gap-4 overflow-hidden h-full transition-transform duration-200 hover:-translate-y-1">
+      <div ref={cardRef} className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-8 flex flex-col items-center gap-5 overflow-hidden h-full transition-transform duration-200 hover:-translate-y-1">
         <div className="absolute inset-0 pointer-events-none opacity-30"
           style={{ background: "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(239,68,68,0.18), transparent 70%)" }} />
-        {/* Ring + number */}
-        <div className="relative flex items-center gap-4 z-10">
-          <svg width="64" height="64" viewBox="0 0 64 64" className="shrink-0 -rotate-90">
-            <circle cx="32" cy="32" r={r} fill="none" stroke="rgba(239,68,68,0.15)" strokeWidth="4" />
-            <motion.circle
-              cx="32" cy="32" r={r} fill="none" stroke="#dc2626" strokeWidth="4"
-              strokeLinecap="round"
-              strokeDasharray={circ}
-              initial={{ strokeDashoffset: circ }}
-              whileInView={{ strokeDashoffset: circ - dash }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-            />
-          </svg>
-          <div className="flex flex-col">
-            <span className="text-5xl font-black text-white leading-none">{value}</span>
-            <span className="text-xs font-semibold uppercase tracking-widest text-zinc-500 mt-1">{unit}</span>
-          </div>
+
+        {/* Ring */}
+        <svg width="80" height="80" viewBox="0 0 80 80" className="shrink-0 -rotate-90 z-10">
+          {/* Track */}
+          <circle cx="40" cy="40" r={r} fill="none" stroke="rgba(239,68,68,0.12)" strokeWidth="5" />
+          {/* Fill */}
+          <motion.circle
+            cx="40" cy="40" r={r} fill="none" stroke="#dc2626" strokeWidth="5"
+            strokeLinecap="round"
+            strokeDasharray={circ}
+            style={{ strokeDashoffset: strokeOffset }}
+          />
+        </svg>
+
+        {/* Animated number */}
+        <div className="flex flex-col items-center gap-1 z-10 -mt-2">
+          <motion.span className="text-5xl font-black text-white leading-none tabular-nums">
+            {display}
+          </motion.span>
+          <span className="text-xs font-semibold uppercase tracking-widest text-zinc-500">{unit}</span>
         </div>
+
         {/* Description */}
-        <p className="text-base font-bold text-white text-center z-10 leading-snug">{desc}</p>
+        <p className="text-sm font-bold text-white text-center z-10 leading-snug">{desc}</p>
       </div>
     </FadeUp>
   );
@@ -284,10 +305,10 @@ function TrustBar() {
     <div className="px-4 py-14 bg-[#161616]">
       <div className="max-w-4xl mx-auto">
         <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <StatRing value="7"    unit="Tage"       desc="bis zur fertigen Website"         progress={0.78} />
-          <StatRing value="2"    unit="Wochen"     desc="bis zu den ersten Anfragen"       progress={0.55} />
-          <StatRing value="100%" unit="Festpreise" desc="keine versteckten Kosten"         progress={1}    />
-          <StatRing value="1"    unit="Person"     desc="direkter Ansprechpartner für dich" progress={0.25} />
+          <StatRing num={7}   unit="Tage"       desc="bis zur fertigen Website"          progress={0.78} />
+          <StatRing num={2}   unit="Wochen"     desc="bis zu den ersten Anfragen"        progress={0.55} />
+          <StatRing num={100} suffix="%" unit="Festpreise" desc="keine versteckten Kosten" progress={1}  />
+          <StatRing num={1}   unit="Person"     desc="direkter Ansprechpartner für dich" progress={0.25} />
         </Stagger>
       </div>
     </div>
@@ -385,7 +406,7 @@ function Hero() {
 // ─── PROBLEM — "Kommt dir das bekannt vor?" ──────────────────────────────────
 const problemItems = [
   {
-    icon: MessageSquare,
+    icon: ThumbsDown,
     title: "Der Webdesigner nimmt dein Geld — und meldet sich dann nicht mehr.",
     meta: "ERFAHRUNG #1",
     body: "Wochen vergehen. Du schreibst Nachrichten. Du rufst an. Nichts. Und irgendwann merkst du: du bist nicht der erste Kunde, dem das passiert ist.",
@@ -393,7 +414,7 @@ const problemItems = [
     span: "md:col-span-4 md:row-span-2",
   },
   {
-    icon: Euro,
+    icon: ThumbsDown,
     title: "Am Ende ist die Website doppelt so teuer wie besprochen.",
     meta: "ERFAHRUNG #2",
     body: "SEO extra. Mobile-Optimierung extra. Domain verbinden extra. Was als fairer Preis begann, endet in einer Rechnung, die du so nie unterschrieben hättest.",
@@ -401,7 +422,7 @@ const problemItems = [
     span: "md:col-span-2 md:row-span-1",
   },
   {
-    icon: Lock,
+    icon: ThumbsDown,
     title: "Die Domain läuft auf dem Namen des Designers. Die Zugangsdaten bekommst du nicht.",
     meta: "ERFAHRUNG #3",
     body: "Deine eigene Website — und du kommst nicht ran. Das ist kein Einzelfall. Das ist bei manchen Anbietern Geschäftsmodell.",
