@@ -8,7 +8,7 @@ import {
   ArrowRight, Users, BarChart2, FileText, X, Check,
   Lock, Quote, LayoutDashboard, Aperture, MessageSquare,
   Activity, Layers, Euro, Timer, Trophy, Globe, Send,
-  GitMerge, Bot, Wrench, User, Calendar, ThumbsDown,
+  GitMerge, Bot, Wrench, User, Calendar, ThumbsDown, Frown,
 } from "lucide-react";
 import { LampContainer } from "@/components/ui/lamp";
 import { GradientButton } from "@/components/ui/gradient-button";
@@ -414,7 +414,7 @@ const problemItems = [
     span: "md:col-span-4 md:row-span-2",
   },
   {
-    icon: ThumbsDown,
+    icon: Frown,
     title: "Am Ende ist die Website doppelt so teuer wie besprochen.",
     meta: "ERFAHRUNG #2",
     body: "SEO extra. Mobile-Optimierung extra. Domain verbinden extra. Was als fairer Preis begann, endet in einer Rechnung, die du so nie unterschrieben hättest.",
@@ -422,7 +422,7 @@ const problemItems = [
     span: "md:col-span-2 md:row-span-1",
   },
   {
-    icon: ThumbsDown,
+    icon: X,
     title: "Die Domain läuft auf dem Namen des Designers. Die Zugangsdaten bekommst du nicht.",
     meta: "ERFAHRUNG #3",
     body: "Deine eigene Website — und du kommst nicht ran. Das ist kein Einzelfall. Das ist bei manchen Anbietern Geschäftsmodell.",
