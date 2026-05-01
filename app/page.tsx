@@ -15,7 +15,7 @@ import { GradientButton } from "@/components/ui/gradient-button";
 import { BGPattern } from "@/components/ui/bg-pattern";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { FooterSection } from "@/components/ui/footer-section";
-import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
+import { TestimonialsRow } from "@/components/ui/testimonials-columns-1";
 import type { TestimonialItem } from "@/components/ui/testimonials-columns-1";
 import type { Testimonial } from "@/components/ui/testimonial-cards";
 
@@ -984,9 +984,8 @@ function Testimonials() {
     role: `${t.role} · ${t.location}`,
   }));
 
-  const col1 = colItems.slice(0, 2);
-  const col2 = colItems.slice(2, 4);
-  const col3 = colItems.slice(4, 6);
+  const row1 = colItems.slice(0, 3);
+  const row2 = colItems.slice(3, 6);
 
   return (
     <Section id="testimonials" className="bg-[#161616] overflow-hidden">
@@ -996,11 +995,10 @@ function Testimonials() {
         <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Echte Ergebnisse. Echte Betriebe. Keine erfundenen Bewertungen.</p></FadeUp>
       </Stagger>
 
-      {/* Scrolling columns */}
-      <div className="flex justify-center gap-5 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] max-h-[640px] overflow-hidden">
-        <TestimonialsColumn testimonials={col1} duration={18} />
-        <TestimonialsColumn testimonials={col2} className="hidden md:block" duration={23} />
-        <TestimonialsColumn testimonials={col3} className="hidden lg:block" duration={20} />
+      {/* Horizontal scrolling rows */}
+      <div className="flex flex-col gap-5 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <TestimonialsRow testimonials={row1} duration={24} direction="left" />
+        <TestimonialsRow testimonials={row2} duration={28} direction="right" />
       </div>
 
       {/* Bottom trust line */}
