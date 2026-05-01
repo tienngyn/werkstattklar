@@ -272,12 +272,12 @@ function StatRing({ num, suffix = "", unit, desc, progress = 0.78 }: {
 
   return (
     <FadeUp className="h-full">
-      <div ref={cardRef} className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-8 flex flex-col items-center gap-5 overflow-hidden h-full transition-transform duration-200 hover:-translate-y-1">
+      <div ref={cardRef} className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-5 sm:p-8 flex flex-col items-center gap-3 sm:gap-5 overflow-hidden h-full transition-transform duration-200 hover:-translate-y-1">
         <div className="absolute inset-0 pointer-events-none opacity-30"
           style={{ background: "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(239,68,68,0.18), transparent 70%)" }} />
 
         {/* Ring */}
-        <svg width="80" height="80" viewBox="0 0 80 80" className="shrink-0 -rotate-90 z-10">
+        <svg width="60" height="60" viewBox="0 0 80 80" className="sm:w-20 sm:h-20 shrink-0 -rotate-90 z-10">
           {/* Track */}
           <circle cx="40" cy="40" r={r} fill="none" stroke="rgba(239,68,68,0.12)" strokeWidth="5" />
           {/* Fill */}
@@ -290,15 +290,15 @@ function StatRing({ num, suffix = "", unit, desc, progress = 0.78 }: {
         </svg>
 
         {/* Animated number */}
-        <div className="flex flex-col items-center gap-1 z-10 -mt-2">
-          <motion.span className="text-5xl font-black text-white leading-none tabular-nums">
+        <div className="flex flex-col items-center gap-1 z-10 -mt-1 sm:-mt-2">
+          <motion.span className="text-3xl sm:text-5xl font-black text-white leading-none tabular-nums">
             {display}
           </motion.span>
-          <span className="text-xs font-semibold uppercase tracking-widest text-zinc-500">{unit}</span>
+          <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-zinc-500">{unit}</span>
         </div>
 
         {/* Description */}
-        <p className="text-sm font-bold text-white text-center z-10 leading-snug">{desc}</p>
+        <p className="text-xs sm:text-sm font-bold text-white text-center z-10 leading-snug">{desc}</p>
       </div>
     </FadeUp>
   );
@@ -308,7 +308,7 @@ function TrustBar() {
   return (
     <div className="px-4 py-14 bg-[#161616]">
       <div className="max-w-4xl mx-auto">
-        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Stagger className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <StatRing num={7}   unit="Tage"       desc="bis zur fertigen Website"          progress={0.78} />
           <StatRing num={2}   unit="Wochen"     desc="bis zu den ersten Anfragen"        progress={0.55} />
           <StatRing num={100} suffix="%" unit="Festpreise" desc="keine versteckten Kosten" progress={1}  />
