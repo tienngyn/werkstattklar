@@ -379,7 +379,7 @@ function Hero() {
                 <AvatarImage
                   src={src}
                   alt={alt}
-                  className="grayscale contrast-110 brightness-[30%]"
+                  className="grayscale contrast-150 brightness-[50%]"
                 />
                 {/* Red gradient from bottom — b&w image with red hue rising from below */}
                 <span className="absolute inset-0 rounded-full pointer-events-none"
@@ -991,7 +991,7 @@ function Testimonials() {
                   <AvatarImage
                     src={photo}
                     alt={name}
-                    className="grayscale contrast-110 brightness-[30%]"
+                    className="grayscale contrast-150 brightness-[50%]"
                   />
                   <span className="absolute inset-0 rounded-full pointer-events-none"
                     style={{ background: "linear-gradient(to top, rgba(220,38,38,0.32) 0%, rgba(220,38,38,0.09) 42%, transparent 65%)" }} />
@@ -1015,7 +1015,7 @@ function Testimonials() {
             <div className="flex -space-x-2">
               {testimonials.slice(0, 5).map(({ photo, initials }, i) => (
                 <Avatar key={i} className="w-7 h-7 ring-2 ring-[#161616]">
-                  <AvatarImage src={photo} alt="" className="grayscale contrast-110 brightness-[30%]" />
+                  <AvatarImage src={photo} alt="" className="grayscale contrast-150 brightness-[50%]" />
                   <span className="absolute inset-0 rounded-full pointer-events-none"
                     style={{ background: "linear-gradient(to top, rgba(220,38,38,0.32) 0%, rgba(220,38,38,0.09) 42%, transparent 65%)" }} />
                   <AvatarFallback className="text-[9px] bg-zinc-800 text-zinc-400">{initials}</AvatarFallback>
