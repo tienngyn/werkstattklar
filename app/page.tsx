@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView, useReducedMotion, useScroll, useSpring as useSpringMotion, useMotionValueEvent } from "framer-motion";
+import { motion, AnimatePresence, useInView, useReducedMotion, useScroll, useMotionValueEvent } from "framer-motion";
 import {
   CheckCircle, Clock, TrendingUp, Zap, RefreshCw, Star,
   ChevronDown, Phone, Mail, AlertTriangle, Shield,
@@ -712,31 +712,35 @@ function Guarantees() {
   );
 }
 
-// ─── STEP ICON — ploppt auf wenn die Linie es erreicht ───────────────────────
+// ─── STEP ICON — dunkel bis die Linie es berührt, dann Farbe ─────────────────
 function StepIcon({ icon: Icon, n, scrollProgress, threshold }: {
   icon: any; n: number; scrollProgress: any; threshold: number;
 }) {
-  const scale = useSpringMotion(1, { stiffness: 550, damping: 11 });
-  const popped = useRef(false);
+  const [active, setActive] = useState(false);
 
   useMotionValueEvent(scrollProgress, "change", (v) => {
-    if (v >= threshold && !popped.current) {
-      popped.current = true;
-      scale.set(1.45);
-      setTimeout(() => scale.set(1), 200);
-    }
-    if (v < threshold - 0.07) {
-      popped.current = false; // beim Zurückscrollen zurücksetzen
-    }
+    setActive(v >= threshold);
   });
 
   return (
-    <motion.div style={{ scale }} className="relative z-20 shrink-0 bg-[#111111] rounded-2xl">
+    <div
+      className="relative z-20 shrink-0 bg-[#111111] rounded-2xl"
+      style={{
+        filter: active ? "none" : "grayscale(1) brightness(0.3)",
+        transition: "filter 0.35s ease",
+      }}
+    >
       <FeatureIcon icon={Icon} color="red" size="md" />
-      <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-600 flex items-center justify-center text-[11px] font-black text-white leading-none shadow-lg shadow-red-900/40">
+      <span
+        className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-black text-white leading-none shadow-lg"
+        style={{
+          background: active ? "#dc2626" : "#3f3f46",
+          transition: "background 0.35s ease",
+        }}
+      >
         {n}
       </span>
-    </motion.div>
+    </div>
   );
 }
 
