@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView, useReducedMotion, useScroll, useMotionValueEvent } from "framer-motion";
 import {
   CheckCircle, Clock, TrendingUp, Zap, RefreshCw, Star,
@@ -713,9 +713,9 @@ function Guarantees() {
 }
 
 // ─── STEP ICON — dunkel bis die Linie es berührt, dann Farbe ─────────────────
-function StepIcon({ icon: Icon, n, scrollProgress, threshold }: {
+const StepIcon = React.forwardRef<HTMLDivElement, {
   icon: any; n: number; scrollProgress: any; threshold: number;
-}) {
+}>(({ icon: Icon, n, scrollProgress, threshold }, ref) => {
   const [active, setActive] = useState(false);
 
   useMotionValueEvent(scrollProgress, "change", (v: number) => {
@@ -724,6 +724,7 @@ function StepIcon({ icon: Icon, n, scrollProgress, threshold }: {
 
   return (
     <div
+      ref={ref}
       className="relative z-20 shrink-0 bg-[#111111] rounded-2xl"
       style={{
         filter: active ? "none" : "grayscale(1) brightness(0.3)",
@@ -742,7 +743,8 @@ function StepIcon({ icon: Icon, n, scrollProgress, threshold }: {
       </span>
     </div>
   );
-}
+});
+StepIcon.displayName = "StepIcon";
 
 // ─── ABLAUF ───────────────────────────────────────────────────────────────────
 function HowItWorks() {
@@ -780,10 +782,34 @@ function HowItWorks() {
   ];
   // Scroll-driven line animation
   const containerRef = useRef<HTMLDivElement>(null);
+  const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [thresholds, setThresholds] = useState([0, 0.25, 0.5, 0.75, 1]);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 85%", "end 20%"],
   });
+
+  // Echte Icon-Positionen messen → pixelgenaue Thresholds
+  useEffect(() => {
+    const compute = () => {
+      if (!containerRef.current) return;
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const containerH = containerRef.current.offsetHeight;
+      const lineTop = 24; // top-6 = 24px
+      const lineH = containerH - 48; // minus top-6 + bottom-6
+      const next = iconRefs.current.map((el) => {
+        if (!el) return 0;
+        const r = el.getBoundingClientRect();
+        const iconCenter = r.top + r.height / 2 - containerRect.top;
+        return Math.max(0.01, Math.min(0.99, (iconCenter - lineTop) / lineH));
+      });
+      setThresholds(next);
+    };
+    const t = setTimeout(compute, 200);
+    window.addEventListener("resize", compute);
+    return () => { clearTimeout(t); window.removeEventListener("resize", compute); };
+  }, []);
 
   return (
     <Section id="ablauf">
@@ -796,13 +822,10 @@ function HowItWorks() {
       <div ref={containerRef} className="relative max-w-3xl mx-auto">
         {/* Track — volle Höhe, dezent grau */}
         <div className="absolute left-[27px] top-6 bottom-6 w-0.5 pointer-events-none z-[1] bg-zinc-800/70" />
-        {/* Fill — wächst scroll-synchron, rot → weiß */}
+        {/* Fill — wächst scroll-synchron, nur rot */}
         <motion.div
-          className="absolute left-[27px] top-6 bottom-6 w-0.5 pointer-events-none z-[1] origin-top"
-          style={{
-            scaleY: scrollYProgress,
-            background: "linear-gradient(to bottom, #dc2626 60%, rgba(255,255,255,0.55))",
-          }}
+          className="absolute left-[27px] top-6 bottom-6 w-0.5 pointer-events-none z-[1] origin-top bg-red-600"
+          style={{ scaleY: scrollYProgress }}
         />
 
         <Stagger className="flex flex-col gap-6">
@@ -810,10 +833,11 @@ function HowItWorks() {
             <FadeUp key={n}>
               <div className="flex gap-5 sm:gap-7 items-start">
                 <StepIcon
+                  ref={(el) => { iconRefs.current[i] = el; }}
                   icon={Icon}
                   n={n}
                   scrollProgress={scrollYProgress}
-                  threshold={i === 0 ? 0.02 : i / (steps.length - 1)}
+                  threshold={thresholds[i] ?? i / (steps.length - 1)}
                 />
 
                 <div className="flex-1 min-w-0">
