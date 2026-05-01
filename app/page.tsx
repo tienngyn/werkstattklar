@@ -654,7 +654,7 @@ function Services() {
       </Stagger>
       <Stagger className="mt-10 flex justify-center">
         <FadeUp>
-          <CTA size="lg">Kennenlern-Gespräch buchen (kostenlos) <ArrowRight className="w-5 h-5" /></CTA>
+          <CTA size="lg" className="!text-sm !px-5 !py-3.5 sm:!text-base sm:!px-8 sm:!py-4 lg:!text-lg lg:!px-10 lg:!py-5 whitespace-nowrap">Kennenlern-Gespräch buchen (kostenlos) <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" /></CTA>
         </FadeUp>
       </Stagger>
     </Section>
@@ -735,7 +735,7 @@ function Guarantees() {
       </Stagger>
       <Stagger className="mt-10 flex justify-center">
         <FadeUp>
-          <CTA size="lg">Kennenlern-Gespräch buchen (kostenlos) <ArrowRight className="w-5 h-5" /></CTA>
+          <CTA size="lg" className="!text-sm !px-5 !py-3.5 sm:!text-base sm:!px-8 sm:!py-4 lg:!text-lg lg:!px-10 lg:!py-5 whitespace-nowrap">Kennenlern-Gespräch buchen (kostenlos) <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" /></CTA>
         </FadeUp>
       </Stagger>
     </Section>
@@ -904,7 +904,7 @@ function HowItWorks() {
       </div>
       <Stagger className="mt-10 flex justify-center">
         <FadeUp>
-          <CTA size="lg">Kennenlern-Gespräch buchen (kostenlos) <ArrowRight className="w-5 h-5" /></CTA>
+          <CTA size="lg" className="!text-sm !px-5 !py-3.5 sm:!text-base sm:!px-8 sm:!py-4 lg:!text-lg lg:!px-10 lg:!py-5 whitespace-nowrap">Kennenlern-Gespräch buchen (kostenlos) <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" /></CTA>
         </FadeUp>
       </Stagger>
     </Section>
