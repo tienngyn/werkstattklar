@@ -13,6 +13,7 @@ import {
 import { LampContainer } from "@/components/ui/lamp";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { BGPattern } from "@/components/ui/bg-pattern";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 // ─── Utils ────────────────────────────────────────────────────────────────────
 function cn(...c: (string | undefined | false | null)[]) {
@@ -342,31 +343,37 @@ function Hero() {
         {/* Social proof strip */}
         <motion.div
           initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.65 }}
-          className="flex items-center gap-4 relative z-30"
+          className="inline-flex items-center gap-3 rounded-full border border-zinc-800/80 bg-zinc-900/60 backdrop-blur-sm px-3 py-2 relative z-30"
         >
-          {/* Overlapping avatars */}
-          <div className="flex">
+          {/* Overlapping avatars — grayscale + red overlay */}
+          <div className="flex -space-x-2">
             {[
-              { init: "MH", bg: "bg-red-600" },
-              { init: "SB", bg: "bg-orange-600" },
-              { init: "DK", bg: "bg-blue-600" },
-              { init: "LM", bg: "bg-purple-600" },
-              { init: "TR", bg: "bg-green-600" },
-            ].map(({ init, bg }, i) => (
-              <div key={init}
-                className={`w-8 h-8 rounded-full border-2 border-[#111111] flex items-center justify-center text-white text-[10px] font-bold ${bg}`}
-                style={{ marginLeft: i === 0 ? 0 : -10 }}>
-                {init}
-              </div>
+              { src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face", alt: "Kunde 1" },
+              { src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=face", alt: "Kunde 2" },
+              { src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=64&h=64&fit=crop&crop=face", alt: "Kunde 3" },
+              { src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face", alt: "Kunde 4" },
+              { src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face", alt: "Kunde 5" },
+            ].map(({ src, alt }, i) => (
+              <Avatar key={i} className="w-7 h-7 ring-2 ring-zinc-900">
+                <AvatarImage
+                  src={src}
+                  alt={alt}
+                  className="grayscale contrast-125 brightness-90"
+                />
+                {/* Red tint overlay — sits on top of the b&w image */}
+                <span className="absolute inset-0 rounded-full bg-red-600/25 mix-blend-overlay pointer-events-none" />
+                <AvatarFallback className="text-[9px] bg-zinc-800 text-zinc-400">K{i+1}</AvatarFallback>
+              </Avatar>
             ))}
           </div>
-          <div className="flex flex-col gap-0.5">
-            <div className="flex items-center gap-1">
+
+          <div className="flex flex-col gap-0.5 pr-1">
+            <div className="flex items-center gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                <Star key={i} className="w-2.5 h-2.5 fill-amber-400 text-amber-400" />
               ))}
             </div>
-            <span className="text-xs text-zinc-400">20+ Betriebe vertrauen mir bereits</span>
+            <span className="text-[11px] text-zinc-400 leading-none">20+ Betriebe vertrauen mir bereits</span>
           </div>
         </motion.div>
       </div>
@@ -782,7 +789,7 @@ const testimonials = [
     role: "Elektroinstallateur",
     location: "Heilbronn",
     initials: "MH",
-    color: "bg-red-600",
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face",
     text: "Ich hatte vorher eine Website, die ich selbst gebaut hab. Sah aus wie 2009. Seit der neuen kommen jede Woche Anfragen rein — ohne dass ich irgendetwas tue. Einfach top.",
     stars: 5,
   },
@@ -791,7 +798,7 @@ const testimonials = [
     role: "Malermeisterin",
     location: "Stuttgart",
     initials: "SB",
-    color: "bg-orange-600",
+    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face",
     text: "Schnell, transparent, pünktlich. Die Zusammenarbeit war unkompliziert und das Ergebnis genau das, was ich mir vorgestellt hab. Ich würde es jederzeit wieder machen.",
     stars: 5,
   },
@@ -800,7 +807,7 @@ const testimonials = [
     role: "Heizung & Sanitär",
     location: "Mannheim",
     initials: "DK",
-    color: "bg-blue-600",
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face",
     text: "Keine Agentur-Bürokratie, kein Stille-Post-Spiel. Ich hab direkt mit einer Person geredet, die weiß was sie tut. Die Website ist live und bringt Ergebnisse.",
     stars: 5,
   },
@@ -809,7 +816,7 @@ const testimonials = [
     role: "Personaltrainerin",
     location: "Karlsruhe",
     initials: "LM",
-    color: "bg-purple-600",
+    photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face",
     text: "Ich dachte, eine professionelle Website wäre für mich zu teuer. War sie nicht. Und jetzt buchen Kunden online, während ich trainiere. Besser geht's nicht.",
     stars: 5,
   },
@@ -818,7 +825,7 @@ const testimonials = [
     role: "Schreiner",
     location: "Heidelberg",
     initials: "TR",
-    color: "bg-green-600",
+    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face",
     text: "Der Festpreis hat mich überzeugt. Kein nachträgliches 'das kostet extra'. Alles war von Anfang an klar — und das Ergebnis hat meine Erwartungen übertroffen.",
     stars: 5,
   },
@@ -827,7 +834,7 @@ const testimonials = [
     role: "Kosmetikstudio",
     location: "Ludwigsburg",
     initials: "NF",
-    color: "bg-pink-600",
+    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face",
     text: "Ich hatte Angst, dass ich als Einzelperson keine Chance gegen die grossen Anbieter habe. Jetzt stehe ich auf Google ganz oben. Die Website hat sich schon im ersten Monat amortisiert.",
     stars: 5,
   },
@@ -853,7 +860,7 @@ function Testimonials() {
       </Stagger>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {testimonials.map(({ name, role, location, initials, color, text, stars }, i) => (
+        {testimonials.map(({ name, role, location, initials, photo, text }, i) => (
           <FadeUp key={name} delay={i * 0.06} className="h-full">
             <div className="h-full relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-7 flex flex-col gap-5 overflow-hidden transition-transform duration-200 hover:-translate-y-1">
               <div className="absolute inset-0 pointer-events-none opacity-30"
@@ -864,9 +871,16 @@ function Testimonials() {
               <p className="text-zinc-300 text-sm leading-relaxed flex-1 relative z-10">{text}</p>
               {/* Footer */}
               <div className="relative z-10 flex items-center gap-3 pt-2 border-t border-white/[0.05]">
-                <div className={`w-9 h-9 rounded-full ${color} flex items-center justify-center text-white text-xs font-bold shrink-0`}>
-                  {initials}
-                </div>
+                {/* Avatar: b&w + red overlay */}
+                <Avatar className="w-9 h-9 shrink-0 ring-1 ring-zinc-700">
+                  <AvatarImage
+                    src={photo}
+                    alt={name}
+                    className="grayscale contrast-125 brightness-85"
+                  />
+                  <span className="absolute inset-0 rounded-full bg-red-600/20 mix-blend-overlay pointer-events-none" />
+                  <AvatarFallback className="text-xs bg-zinc-800 text-zinc-400">{initials}</AvatarFallback>
+                </Avatar>
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold text-white truncate">{name}</div>
                   <div className="text-xs text-zinc-500 truncate">{role} · {location}</div>
@@ -882,12 +896,13 @@ function Testimonials() {
       <FadeUp delay={0.3}>
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-zinc-500">
           <div className="flex items-center gap-2">
-            <div className="flex">
-              {["MH","SB","DK","LM","TR"].map((init, i) => (
-                <div key={init} className={`w-7 h-7 rounded-full border-2 border-[#161616] flex items-center justify-center text-white text-[9px] font-bold ${["bg-red-600","bg-orange-600","bg-blue-600","bg-purple-600","bg-green-600"][i]}`}
-                  style={{ marginLeft: i === 0 ? 0 : -8 }}>
-                  {init}
-                </div>
+            <div className="flex -space-x-2">
+              {testimonials.slice(0, 5).map(({ photo, initials }, i) => (
+                <Avatar key={i} className="w-7 h-7 ring-2 ring-[#161616]">
+                  <AvatarImage src={photo} alt="" className="grayscale contrast-125 brightness-85" />
+                  <span className="absolute inset-0 rounded-full bg-red-600/20 mix-blend-overlay pointer-events-none" />
+                  <AvatarFallback className="text-[9px] bg-zinc-800 text-zinc-400">{initials}</AvatarFallback>
+                </Avatar>
               ))}
             </div>
             <span>20+ zufriedene Kunden</span>
