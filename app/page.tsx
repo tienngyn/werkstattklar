@@ -592,7 +592,7 @@ function Services() {
                       style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.0) 100%)" }} />
                     {/* roter Hue von unten — gleicher Stil wie Avatare */}
                     <div className="absolute inset-0 pointer-events-none"
-                      style={{ background: "linear-gradient(to top, rgba(220,38,38,0.72) 0%, rgba(220,38,38,0.28) 35%, transparent 62%)" }} />
+                      style={{ background: "linear-gradient(to top, rgba(220,38,38,0.48) 0%, rgba(220,38,38,0.16) 40%, transparent 65%)" }} />
                   </>
                 ) : (
                   <div className="absolute inset-0 pointer-events-none opacity-60"
