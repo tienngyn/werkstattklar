@@ -3,15 +3,7 @@
 import React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import {
-  FacebookIcon,
-  InstagramIcon,
-  LinkedinIcon,
-  YoutubeIcon,
-  Mail,
-  Phone,
-  Lock,
-} from 'lucide-react';
+import { Mail, Phone, Lock } from 'lucide-react';
 
 interface FooterLink {
   title: string;
@@ -32,15 +24,6 @@ const footerLinks: FooterSection[] = [
       { title: 'Datenschutz', href: '/datenschutz' },
       { title: 'kontakt@werkstattklar.de', href: 'mailto:kontakt@werkstattklar.de', icon: Mail },
       { title: '0179 263 243 0', href: 'tel:+491792632430', icon: Phone },
-    ],
-  },
-  {
-    label: 'Social',
-    links: [
-      { title: 'Instagram', href: '#', icon: InstagramIcon },
-      { title: 'Facebook', href: '#', icon: FacebookIcon },
-      { title: 'LinkedIn', href: '#', icon: LinkedinIcon },
-      { title: 'YouTube', href: '#', icon: YoutubeIcon },
     ],
   },
 ];
