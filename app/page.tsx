@@ -360,8 +360,9 @@ function Hero() {
                   alt={alt}
                   className="grayscale contrast-125 brightness-90"
                 />
-                {/* Red tint overlay — sits on top of the b&w image */}
-                <span className="absolute inset-0 rounded-full bg-red-600/25 mix-blend-overlay pointer-events-none" />
+                {/* Red gradient from bottom — b&w image with red hue rising from below */}
+                <span className="absolute inset-0 rounded-full pointer-events-none"
+                  style={{ background: "linear-gradient(to top, rgba(220,38,38,0.58) 0%, rgba(220,38,38,0.2) 38%, transparent 65%)" }} />
                 <AvatarFallback className="text-[9px] bg-zinc-800 text-zinc-400">K{i+1}</AvatarFallback>
               </Avatar>
             ))}
@@ -878,7 +879,8 @@ function Testimonials() {
                     alt={name}
                     className="grayscale contrast-125 brightness-85"
                   />
-                  <span className="absolute inset-0 rounded-full bg-red-600/20 mix-blend-overlay pointer-events-none" />
+                  <span className="absolute inset-0 rounded-full pointer-events-none"
+                    style={{ background: "linear-gradient(to top, rgba(220,38,38,0.58) 0%, rgba(220,38,38,0.2) 38%, transparent 65%)" }} />
                   <AvatarFallback className="text-xs bg-zinc-800 text-zinc-400">{initials}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1 min-w-0">
@@ -900,7 +902,8 @@ function Testimonials() {
               {testimonials.slice(0, 5).map(({ photo, initials }, i) => (
                 <Avatar key={i} className="w-7 h-7 ring-2 ring-[#161616]">
                   <AvatarImage src={photo} alt="" className="grayscale contrast-125 brightness-85" />
-                  <span className="absolute inset-0 rounded-full bg-red-600/20 mix-blend-overlay pointer-events-none" />
+                  <span className="absolute inset-0 rounded-full pointer-events-none"
+                    style={{ background: "linear-gradient(to top, rgba(220,38,38,0.58) 0%, rgba(220,38,38,0.2) 38%, transparent 65%)" }} />
                   <AvatarFallback className="text-[9px] bg-zinc-800 text-zinc-400">{initials}</AvatarFallback>
                 </Avatar>
               ))}
