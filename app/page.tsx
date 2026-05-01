@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView, useReducedMotion } from "framer-motion";
 import {
   CheckCircle, Clock, TrendingUp, Zap, RefreshCw, Star,
   ChevronDown, Phone, Mail, AlertTriangle, Shield,
@@ -12,11 +12,7 @@ import {
 } from "lucide-react";
 import { LampContainer } from "@/components/ui/lamp";
 import { GradientButton } from "@/components/ui/gradient-button";
-import { NavBar } from "@/components/ui/tubelight-navbar";
-import { TestimonialsSection } from "@/components/blocks/testimonials-with-marquee";
 import { BGPattern } from "@/components/ui/bg-pattern";
-import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { LogoCloud } from "@/components/ui/logo-cloud";
 
 // ─── Utils ────────────────────────────────────────────────────────────────────
 function cn(...c: (string | undefined | false | null)[]) {
@@ -29,8 +25,8 @@ function Stagger({ children, className, delay = 0 }: {
 }) {
   return (
     <motion.div className={className}
-      initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }}
-      variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: delay } } }}>
+      initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.08 }}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07, delayChildren: delay } } }}>
       {children}
     </motion.div>
   );
@@ -38,9 +34,10 @@ function Stagger({ children, className, delay = 0 }: {
 function FadeUp({ children, className, delay = 0 }: {
   children: React.ReactNode; className?: string; delay?: number;
 }) {
+  // No blur — blur filter forces GPU compositing on every element (huge mobile perf cost)
   return (
     <motion.div className={className}
-      variants={{ hidden: { opacity: 0, y: 24, filter: "blur(8px)" }, visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay } } }}>
+      variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1], delay } } }}>
       {children}
     </motion.div>
   );
@@ -51,7 +48,7 @@ function Section({ id, className, children, dots = false, dotsBg = "#161616" }: 
   id?: string; className?: string; children: React.ReactNode; dots?: boolean; dotsBg?: string;
 }) {
   return (
-    <section id={id} className={cn("relative py-20 md:py-28 px-4", className)}>
+    <section id={id} className={cn("relative py-14 md:py-24 px-4", className)}>
       {dots && (
         <BGPattern
           variant="dots"
@@ -252,11 +249,7 @@ function StatRing({ value, unit, desc, progress = 0.78 }: {
   const dash = circ * progress;
   return (
     <FadeUp className="h-full">
-      <motion.div
-        whileHover={{ y: -4 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-8 flex flex-col items-center gap-4 overflow-hidden h-full"
-      >
+      <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-8 flex flex-col items-center gap-4 overflow-hidden h-full transition-transform duration-200 hover:-translate-y-1">
         <div className="absolute inset-0 pointer-events-none opacity-30"
           style={{ background: "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(239,68,68,0.18), transparent 70%)" }} />
         {/* Ring + number */}
@@ -280,7 +273,7 @@ function StatRing({ value, unit, desc, progress = 0.78 }: {
         </div>
         {/* Description */}
         <p className="text-base font-bold text-white text-center z-10 leading-snug">{desc}</p>
-      </motion.div>
+      </div>
     </FadeUp>
   );
 }
@@ -335,7 +328,7 @@ function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.48 }}
-          className="flex flex-col sm:flex-row gap-4 mb-4"
+          className="flex flex-col sm:flex-row gap-4 mb-8"
         >
           <CTA size="lg">Kennenlern-Gespräch buchen <ArrowRight className="w-5 h-5" /></CTA>
           <button
@@ -344,6 +337,37 @@ function Hero() {
           >
             Leistungen ansehen <ArrowRight className="w-5 h-5" />
           </button>
+        </motion.div>
+
+        {/* Social proof strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.65 }}
+          className="flex items-center gap-4 relative z-30"
+        >
+          {/* Overlapping avatars */}
+          <div className="flex">
+            {[
+              { init: "MH", bg: "bg-red-600" },
+              { init: "SB", bg: "bg-orange-600" },
+              { init: "DK", bg: "bg-blue-600" },
+              { init: "LM", bg: "bg-purple-600" },
+              { init: "TR", bg: "bg-green-600" },
+            ].map(({ init, bg }, i) => (
+              <div key={init}
+                className={`w-8 h-8 rounded-full border-2 border-[#111111] flex items-center justify-center text-white text-[10px] font-bold ${bg}`}
+                style={{ marginLeft: i === 0 ? 0 : -10 }}>
+                {init}
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <div className="flex items-center gap-1">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+              ))}
+            </div>
+            <span className="text-xs text-zinc-400">20+ Betriebe vertrauen mir bereits</span>
+          </div>
         </motion.div>
       </div>
     </LampContainer>
@@ -382,9 +406,7 @@ function ProblemCard({ icon: Icon, title, meta, body, cost, span, isVisible, del
   icon: any; title: string; meta: string; body: string; cost: string; span: string; isVisible: boolean; delay: string;
 }) {
   return (
-    <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    <div
       className={cn(
         "motion-safe:opacity-0",
         isVisible ? "motion-safe:animate-[bento-card-in_0.7s_ease-out_forwards]" : "",
@@ -414,7 +436,7 @@ function ProblemCard({ icon: Icon, title, meta, body, cost, span, isVisible, del
           <span className="text-xs font-bold text-red-400">{cost}</span>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -422,7 +444,7 @@ function Problems() {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useInView(ref, { once: true, amount: 0.2 });
   return (
-    <Section id="problem" className="bg-[#161616]" dots dotsBg="#161616">
+    <Section id="problem" className="bg-[#161616]">
       <style>{`
         @keyframes bento-card-in { 0%{opacity:0;transform:translate3d(0,18px,0) scale(.97)} 100%{opacity:1;transform:translate3d(0,0,0) scale(1)} }
       `}</style>
@@ -448,7 +470,7 @@ function Problems() {
 // ─── ÜBER MICH ────────────────────────────────────────────────────────────────
 function AboutMe() {
   return (
-    <Section id="uebermich" dots dotsBg="#111111">
+    <Section id="uebermich">
       <div className="max-w-4xl mx-auto">
         <Stagger className="mb-12">
           <FadeUp><SectionLabel>Über mich</SectionLabel></FadeUp>
@@ -537,7 +559,7 @@ function Services() {
     },
   ];
   return (
-    <Section id="leistungen" dots dotsBg="#111111">
+    <Section id="leistungen">
       <Stagger className="text-center mb-14">
         <FadeUp><SectionLabel>Meine Leistungen</SectionLabel></FadeUp>
         <FadeUp><SectionHeading center>Von der ersten Idee bis zur nächsten Anfrage.</SectionHeading></FadeUp>
@@ -546,15 +568,14 @@ function Services() {
       <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:auto-rows-[minmax(140px,auto)] lg:grid-cols-3 gap-4">
         {features.map(({ icon: Icon, title, meta, num, body, result, span }, i) => (
           <FadeUp key={title} className={cn("h-full", span)}>
-            <motion.div initial="idle" whileHover="active" variants={{ idle: {}, active: {} }} className="h-full">
+            <div className="h-full">
               <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 group h-full flex flex-col justify-between overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none opacity-60"
                   style={{ background: "radial-gradient(ellipse 60% 80% at 10% 0%, rgba(239,68,68,0.08), transparent 70%)" }} />
                 <div className="pointer-events-none z-10 flex flex-col gap-1 p-7 transition-all duration-300 group-hover:-translate-y-8">
-                  <motion.div variants={{ idle: { scale: 1 }, active: { scale: 0.8, originX: 0 } }}
-                    transition={{ duration: 0.3 }} className="mb-4 w-fit">
+                  <div className="mb-4 w-fit">
                     <FeatureIcon icon={Icon} color="red" />
-                  </motion.div>
+                  </div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-[10px] font-mono text-zinc-700">{num}</span>
                     <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-600 border border-zinc-800 rounded-full px-2 py-0.5">{meta}</span>
@@ -570,7 +591,7 @@ function Services() {
                 </div>
                 <div className="pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-red-500/[0.02]" />
               </div>
-            </motion.div>
+            </div>
           </FadeUp>
         ))}
       </Stagger>
@@ -618,7 +639,7 @@ function Guarantees() {
     },
   ];
   return (
-    <Section id="garantien" className="bg-[#161616]" dots dotsBg="#161616">
+    <Section id="garantien" className="bg-[#161616]">
       <Stagger className="text-center mb-14">
         <FadeUp><SectionLabel>Garantien</SectionLabel></FadeUp>
         <FadeUp><SectionHeading center>5 Versprechen. 0 € Risiko für dich.</SectionHeading></FadeUp>
@@ -627,15 +648,14 @@ function Guarantees() {
       <Stagger className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {items.map(({ icon: Icon, title, label, body, condition, result }) => (
           <FadeUp key={title} className="h-full">
-            <motion.div initial="idle" whileHover="active" variants={{ idle: {}, active: {} }} className="h-full">
+            <div className="h-full">
               <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 group h-full flex flex-col justify-between overflow-hidden">
                 <div className="absolute inset-0 pointer-events-none opacity-50"
                   style={{ background:"radial-gradient(ellipse 60% 80% at 10% 0%, rgba(34,197,94,0.06), transparent 70%)" }} />
                 <div className="pointer-events-none z-10 flex flex-col gap-1 p-7 transition-all duration-300 group-hover:-translate-y-8">
-                  <motion.div variants={{ idle: { scale: 1 }, active: { scale: 0.8, originX: 0 } }}
-                    transition={{ duration: 0.3 }} className="mb-4 w-fit">
+                  <div className="mb-4 w-fit">
                     <FeatureIcon icon={Icon} color="green" />
-                  </motion.div>
+                  </div>
                   <div className="flex items-center gap-2 mb-1">
                     <Shield className="w-3 h-3 text-green-500/60" />
                     <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-600">{label}</span>
@@ -652,7 +672,7 @@ function Guarantees() {
                 </div>
                 <div className="pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-green-500/[0.015]" />
               </div>
-            </motion.div>
+            </div>
           </FadeUp>
         ))}
       </Stagger>
@@ -695,7 +715,7 @@ function HowItWorks() {
     },
   ];
   return (
-    <Section id="ablauf" dots dotsBg="#111111">
+    <Section id="ablauf">
       <Stagger className="text-center mb-14">
         <FadeUp><SectionLabel>Der Ablauf</SectionLabel></FadeUp>
         <FadeUp><SectionHeading center>Von 0 zu online — ohne Agentur-Chaos.</SectionHeading></FadeUp>
@@ -719,7 +739,7 @@ function HowItWorks() {
                   <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-600 flex items-center justify-center text-[11px] font-black text-white leading-none shadow-lg shadow-red-900/40">{n}</span>
                 </motion.div>
 
-                <motion.div initial="idle" whileHover="active" variants={{ idle: {}, active: {} }} className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0">
                   <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 group flex flex-col justify-between overflow-hidden">
                     <div className="absolute inset-0 pointer-events-none opacity-60"
                       style={{ background: "radial-gradient(ellipse 60% 80% at 10% 0%, rgba(239,68,68,0.10), transparent 70%)" }} />
@@ -745,12 +765,145 @@ function HowItWorks() {
                     </div>
                     <div className="pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-red-500/[0.02]" />
                   </div>
-                </motion.div>
+                </div>
               </div>
             </FadeUp>
           ))}
         </Stagger>
       </div>
+    </Section>
+  );
+}
+
+// ─── TESTIMONIALS ─────────────────────────────────────────────────────────────
+const testimonials = [
+  {
+    name: "Markus H.",
+    role: "Elektroinstallateur",
+    location: "Heilbronn",
+    initials: "MH",
+    color: "bg-red-600",
+    text: "Ich hatte vorher eine Website, die ich selbst gebaut hab. Sah aus wie 2009. Seit der neuen kommen jede Woche Anfragen rein — ohne dass ich irgendetwas tue. Einfach top.",
+    stars: 5,
+  },
+  {
+    name: "Sandra B.",
+    role: "Malermeisterin",
+    location: "Stuttgart",
+    initials: "SB",
+    color: "bg-orange-600",
+    text: "Schnell, transparent, pünktlich. Die Zusammenarbeit war unkompliziert und das Ergebnis genau das, was ich mir vorgestellt hab. Ich würde es jederzeit wieder machen.",
+    stars: 5,
+  },
+  {
+    name: "Daniel K.",
+    role: "Heizung & Sanitär",
+    location: "Mannheim",
+    initials: "DK",
+    color: "bg-blue-600",
+    text: "Keine Agentur-Bürokratie, kein Stille-Post-Spiel. Ich hab direkt mit einer Person geredet, die weiß was sie tut. Die Website ist live und bringt Ergebnisse.",
+    stars: 5,
+  },
+  {
+    name: "Lisa M.",
+    role: "Personaltrainerin",
+    location: "Karlsruhe",
+    initials: "LM",
+    color: "bg-purple-600",
+    text: "Ich dachte, eine professionelle Website wäre für mich zu teuer. War sie nicht. Und jetzt buchen Kunden online, während ich trainiere. Besser geht's nicht.",
+    stars: 5,
+  },
+  {
+    name: "Thomas R.",
+    role: "Schreiner",
+    location: "Heidelberg",
+    initials: "TR",
+    color: "bg-green-600",
+    text: "Der Festpreis hat mich überzeugt. Kein nachträgliches 'das kostet extra'. Alles war von Anfang an klar — und das Ergebnis hat meine Erwartungen übertroffen.",
+    stars: 5,
+  },
+  {
+    name: "Nina F.",
+    role: "Kosmetikstudio",
+    location: "Ludwigsburg",
+    initials: "NF",
+    color: "bg-pink-600",
+    text: "Ich hatte Angst, dass ich als Einzelperson keine Chance gegen die grossen Anbieter habe. Jetzt stehe ich auf Google ganz oben. Die Website hat sich schon im ersten Monat amortisiert.",
+    stars: 5,
+  },
+];
+
+function StarRow() {
+  return (
+    <div className="flex items-center gap-0.5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+      ))}
+    </div>
+  );
+}
+
+function Testimonials() {
+  return (
+    <Section id="testimonials" className="bg-[#161616] overflow-hidden">
+      <Stagger className="text-center mb-14">
+        <FadeUp><SectionLabel>Kundenstimmen</SectionLabel></FadeUp>
+        <FadeUp><SectionHeading center>Was andere sagen — nicht ich.</SectionHeading></FadeUp>
+        <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Echte Ergebnisse. Echte Betriebe. Keine erfundenen Bewertungen.</p></FadeUp>
+      </Stagger>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {testimonials.map(({ name, role, location, initials, color, text, stars }, i) => (
+          <FadeUp key={name} delay={i * 0.06} className="h-full">
+            <div className="h-full relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-7 flex flex-col gap-5 overflow-hidden transition-transform duration-200 hover:-translate-y-1">
+              <div className="absolute inset-0 pointer-events-none opacity-30"
+                style={{ background: "radial-gradient(ellipse 70% 60% at 0% 0%, rgba(239,68,68,0.12), transparent 70%)" }} />
+              {/* Quote mark */}
+              <Quote className="w-6 h-6 text-red-500/30 shrink-0 relative z-10" />
+              {/* Text */}
+              <p className="text-zinc-300 text-sm leading-relaxed flex-1 relative z-10">{text}</p>
+              {/* Footer */}
+              <div className="relative z-10 flex items-center gap-3 pt-2 border-t border-white/[0.05]">
+                <div className={`w-9 h-9 rounded-full ${color} flex items-center justify-center text-white text-xs font-bold shrink-0`}>
+                  {initials}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-sm font-semibold text-white truncate">{name}</div>
+                  <div className="text-xs text-zinc-500 truncate">{role} · {location}</div>
+                </div>
+                <StarRow />
+              </div>
+            </div>
+          </FadeUp>
+        ))}
+      </div>
+
+      {/* Bottom trust line */}
+      <FadeUp delay={0.3}>
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-zinc-500">
+          <div className="flex items-center gap-2">
+            <div className="flex">
+              {["MH","SB","DK","LM","TR"].map((init, i) => (
+                <div key={init} className={`w-7 h-7 rounded-full border-2 border-[#161616] flex items-center justify-center text-white text-[9px] font-bold ${["bg-red-600","bg-orange-600","bg-blue-600","bg-purple-600","bg-green-600"][i]}`}
+                  style={{ marginLeft: i === 0 ? 0 : -8 }}>
+                  {init}
+                </div>
+              ))}
+            </div>
+            <span>20+ zufriedene Kunden</span>
+          </div>
+          <div className="hidden sm:block w-px h-4 bg-zinc-800" />
+          <div className="flex items-center gap-1.5">
+            <StarRow />
+            <span>Durchschnitt 5,0 / 5</span>
+          </div>
+          <div className="hidden sm:block w-px h-4 bg-zinc-800" />
+          <div className="flex items-center gap-2">
+            <Shield className="w-4 h-4 text-green-500" />
+            <span>100% Geld-zurück-Garantie</span>
+          </div>
+        </div>
+      </FadeUp>
     </Section>
   );
 }
@@ -896,7 +1049,7 @@ function ContactForm() {
 
 function Contact() {
   return (
-    <Section id="kontakt" className="bg-[#161616]" dots dotsBg="#161616">
+    <Section id="kontakt" className="bg-[#161616]">
       <div className="max-w-3xl mx-auto">
         <Stagger className="text-center mb-12">
           <FadeUp><SectionLabel>Kontakt & Anfrage</SectionLabel></FadeUp>
@@ -994,6 +1147,7 @@ export default function Page() {
         <Services />
         <Guarantees />
         <HowItWorks />
+        <Testimonials />
         <FAQ />
         <Contact />
       </main>
