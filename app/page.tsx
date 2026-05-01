@@ -579,35 +579,41 @@ function Services() {
             <div className="h-full">
               <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 group h-full flex flex-col justify-between overflow-hidden">
 
-                {/* ── Cards mit Foto-Hintergrund ── */}
-                {(i === 0 || i === 1) ? (
-                  <>
-                    <img
-                      src={i === 0 ? "/handwerker-laptop.png" : "/marketing-dashboard.png"}
-                      alt=""
-                      className="absolute inset-0 w-full h-full object-cover grayscale contrast-110 brightness-[30%] pointer-events-none select-none"
-                    />
-                    {/* dunkles Vignette oben damit Text lesbar bleibt */}
-                    <div className="absolute inset-0 pointer-events-none"
-                      style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.0) 100%)" }} />
-                    {/* roter Hue von unten — gleicher Stil wie Avatare */}
-                    <div className="absolute inset-0 pointer-events-none"
-                      style={{ background: "linear-gradient(to top, rgba(220,38,38,0.48) 0%, rgba(220,38,38,0.16) 40%, transparent 65%)" }} />
-                  </>
-                ) : (
-                  <div className="absolute inset-0 pointer-events-none opacity-60"
-                    style={{ background: "radial-gradient(ellipse 60% 80% at 10% 0%, rgba(239,68,68,0.08), transparent 70%)" }} />
-                )}
+                {/* ── Alle Cards: Foto-Hintergrund ── */}
+                {(() => {
+                  const imgs = [
+                    "/handwerker-laptop.png",
+                    "/marketing-dashboard.png",
+                    "/funnel-strategie.png",
+                    "/ki-automation.png",
+                    "/website-pflege.png",
+                  ];
+                  return (
+                    <>
+                      <img
+                        src={imgs[i]}
+                        alt=""
+                        className="absolute inset-0 w-full h-full object-cover grayscale contrast-110 brightness-[30%] pointer-events-none select-none"
+                      />
+                      {/* dunkle Vignette oben — Text lesbar */}
+                      <div className="absolute inset-0 pointer-events-none"
+                        style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.0) 100%)" }} />
+                      {/* roter Hue von unten — weich */}
+                      <div className="absolute inset-0 pointer-events-none"
+                        style={{ background: "linear-gradient(to top, rgba(220,38,38,0.32) 0%, rgba(220,38,38,0.09) 42%, transparent 65%)" }} />
+                    </>
+                  );
+                })()}
                 <div className="pointer-events-none z-10 flex flex-col gap-1 p-7 transition-all duration-300 group-hover:-translate-y-8">
                   <div className="mb-4 w-fit">
                     <FeatureIcon icon={Icon} color="red" />
                   </div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className={cn("text-[10px] font-mono", (i === 0 || i === 1) ? "text-zinc-300" : "text-zinc-700")}>{num}</span>
-                    <span className={cn("text-[9px] font-bold uppercase tracking-[0.3em] rounded-full px-2 py-0.5", (i === 0 || i === 1) ? "text-zinc-200 border border-white/20" : "text-zinc-600 border border-zinc-800")}>{meta}</span>
+                    <span className="text-[10px] font-mono text-zinc-300">{num}</span>
+                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] rounded-full px-2 py-0.5 text-zinc-200 border border-white/20">{meta}</span>
                   </div>
                   <h3 className="text-lg font-bold text-white">{title}</h3>
-                  <p className={cn("text-sm leading-relaxed max-w-xs", (i === 0 || i === 1) ? "text-zinc-200" : "text-zinc-400")}>{body}</p>
+                  <p className="text-sm leading-relaxed max-w-xs text-zinc-200">{body}</p>
                 </div>
                 <div className="pointer-events-none absolute bottom-0 flex w-full translate-y-10 flex-row items-center p-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2">
