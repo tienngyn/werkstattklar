@@ -579,11 +579,11 @@ function Services() {
             <div className="h-full">
               <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 group h-full flex flex-col justify-between overflow-hidden">
 
-                {/* ── Card 01: echtes Bild als Hintergrund ── */}
-                {i === 0 ? (
+                {/* ── Cards mit Foto-Hintergrund ── */}
+                {(i === 0 || i === 1) ? (
                   <>
                     <img
-                      src="/handwerker-laptop.png"
+                      src={i === 0 ? "/handwerker-laptop.png" : "/marketing-dashboard.png"}
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover grayscale contrast-110 brightness-[30%] pointer-events-none select-none"
                     />
@@ -603,11 +603,11 @@ function Services() {
                     <FeatureIcon icon={Icon} color="red" />
                   </div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className={cn("text-[10px] font-mono", i === 0 ? "text-zinc-300" : "text-zinc-700")}>{num}</span>
-                    <span className={cn("text-[9px] font-bold uppercase tracking-[0.3em] rounded-full px-2 py-0.5", i === 0 ? "text-zinc-200 border border-white/20" : "text-zinc-600 border border-zinc-800")}>{meta}</span>
+                    <span className={cn("text-[10px] font-mono", (i === 0 || i === 1) ? "text-zinc-300" : "text-zinc-700")}>{num}</span>
+                    <span className={cn("text-[9px] font-bold uppercase tracking-[0.3em] rounded-full px-2 py-0.5", (i === 0 || i === 1) ? "text-zinc-200 border border-white/20" : "text-zinc-600 border border-zinc-800")}>{meta}</span>
                   </div>
                   <h3 className="text-lg font-bold text-white">{title}</h3>
-                  <p className={cn("text-sm leading-relaxed max-w-xs", i === 0 ? "text-zinc-200" : "text-zinc-400")}>{body}</p>
+                  <p className={cn("text-sm leading-relaxed max-w-xs", (i === 0 || i === 1) ? "text-zinc-200" : "text-zinc-400")}>{body}</p>
                 </div>
                 <div className="pointer-events-none absolute bottom-0 flex w-full translate-y-10 flex-row items-center p-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2">
