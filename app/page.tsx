@@ -14,6 +14,7 @@ import { LampContainer } from "@/components/ui/lamp";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { BGPattern } from "@/components/ui/bg-pattern";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { FooterSection } from "@/components/ui/footer-section";
 
 // ─── Utils ────────────────────────────────────────────────────────────────────
 function cn(...c: (string | undefined | false | null)[]) {
@@ -1219,52 +1220,7 @@ function Contact() {
   );
 }
 
-// ─── FOOTER ───────────────────────────────────────────────────────────────────
-function Footer() {
-  return (
-    <footer className="border-t border-white/[0.05] py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-10 mb-10">
-          <div>
-            <div className="text-xl font-black mb-2">Werkstatt<span className="text-red-500">KLAR</span></div>
-            <p className="text-zinc-500 text-sm leading-relaxed">Websites & digitale Lösungen.<br />Persönlich. Transparent. Pünktlich.</p>
-          </div>
-          <div>
-            <div className="text-sm font-semibold text-zinc-300 mb-4">Links</div>
-            <div className="space-y-2">
-              {[
-                { label: "Leistungen", href: "#leistungen" },
-                { label: "Ablauf", href: "#ablauf" },
-                { label: "Kontakt", href: "#kontakt" },
-                { label: "Impressum", href: "/impressum" },
-                { label: "Datenschutz", href: "/datenschutz" },
-              ].map(({ label, href }) => (
-                <a key={label} href={href} className="block text-sm text-zinc-500 hover:text-white transition-colors">{label}</a>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="text-sm font-semibold text-zinc-300 mb-4">Kontakt</div>
-            <div className="space-y-3">
-              {[
-                { icon: Mail, text: "kontakt@werkstattklar.de", href: "mailto:kontakt@werkstattklar.de" },
-                { icon: Phone, text: "0179 263 243 0", href: "tel:+491792632430" },
-              ].map(({ icon: Icon, text, href }) => (
-                <a key={text} href={href} className="flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-colors">
-                  <Icon className="w-4 h-4 shrink-0" />{text}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-white/[0.05] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-700">
-          <span>© 2026 WerkstattKLAR. Alle Rechte vorbehalten.</span>
-          <span className="flex items-center gap-1.5"><Lock className="w-3 h-3" /> DSGVO-konform · Daten bleiben bei dir</span>
-        </div>
-      </div>
-    </footer>
-  );
-}
+// Footer → see components/ui/footer-section.tsx
 
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 export default function Page() {
@@ -1283,7 +1239,7 @@ export default function Page() {
         <FAQ />
         <Contact />
       </main>
-      <Footer />
+      <FooterSection />
     </>
   );
 }
