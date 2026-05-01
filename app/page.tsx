@@ -733,6 +733,11 @@ function Guarantees() {
           </FadeUp>
         ))}
       </Stagger>
+      <Stagger className="mt-10 flex justify-center">
+        <FadeUp>
+          <CTA size="lg">Kennenlern-Gespräch buchen (kostenlos) <ArrowRight className="w-5 h-5" /></CTA>
+        </FadeUp>
+      </Stagger>
     </Section>
   );
 }
@@ -897,6 +902,11 @@ function HowItWorks() {
           ))}
         </Stagger>
       </div>
+      <Stagger className="mt-10 flex justify-center">
+        <FadeUp>
+          <CTA size="lg">Kennenlern-Gespräch buchen (kostenlos) <ArrowRight className="w-5 h-5" /></CTA>
+        </FadeUp>
+      </Stagger>
     </Section>
   );
 }
