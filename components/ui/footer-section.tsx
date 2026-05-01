@@ -26,24 +26,6 @@ interface FooterSection {
 
 const footerLinks: FooterSection[] = [
   {
-    label: 'Navigation',
-    links: [
-      { title: 'Leistungen', href: '#leistungen' },
-      { title: 'Über mich', href: '#uebermich' },
-      { title: 'Der Ablauf', href: '#ablauf' },
-      { title: 'FAQ', href: '#faq' },
-    ],
-  },
-  {
-    label: 'Leistungen',
-    links: [
-      { title: 'Webdesign & Landingpages', href: '#leistungen' },
-      { title: 'Performance Marketing', href: '#leistungen' },
-      { title: 'Funnel-Aufbau', href: '#leistungen' },
-      { title: 'KI Automation', href: '#leistungen' },
-    ],
-  },
-  {
     label: 'Rechtliches',
     links: [
       { title: 'Impressum', href: '/impressum' },
@@ -88,7 +70,7 @@ export function FooterSection() {
           </AnimatedContainer>
 
           {/* Link columns */}
-          <div className="mt-4 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
+          <div className="mt-4 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             {footerLinks.map((section, index) => (
               <AnimatedContainer key={section.label} delay={0.1 + index * 0.08}>
                 <div>
@@ -118,7 +100,6 @@ export function FooterSection() {
         <AnimatedContainer delay={0.45}>
           <div className="mt-14 border-t border-white/[0.05] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-700">
             <span>© {new Date().getFullYear()} WerkstattKLAR. Alle Rechte vorbehalten.</span>
-            <span>Made with ❤️ für Handwerker</span>
           </div>
         </AnimatedContainer>
       </div>
