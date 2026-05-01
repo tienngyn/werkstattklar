@@ -15,6 +15,8 @@ import { GradientButton } from "@/components/ui/gradient-button";
 import { BGPattern } from "@/components/ui/bg-pattern";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { FooterSection } from "@/components/ui/footer-section";
+import { ShuffleCards } from "@/components/ui/testimonial-cards";
+import type { Testimonial } from "@/components/ui/testimonial-cards";
 
 // ─── Utils ────────────────────────────────────────────────────────────────────
 function cn(...c: (string | undefined | false | null)[]) {
@@ -899,7 +901,7 @@ function HowItWorks() {
 }
 
 // ─── TESTIMONIALS ─────────────────────────────────────────────────────────────
-const testimonials = [
+const testimonials: Testimonial[] = [
   {
     name: "Markus H.",
     role: "Elektroinstallateur",
@@ -975,43 +977,14 @@ function Testimonials() {
         <FadeUp><p className="text-zinc-400 max-w-xl mx-auto text-sm md:text-base">Echte Ergebnisse. Echte Betriebe. Keine erfundenen Bewertungen.</p></FadeUp>
       </Stagger>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {testimonials.map(({ name, role, location, initials, photo, text }, i) => (
-          <FadeUp key={name} delay={i * 0.06} className="h-full">
-            <div className="h-full relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 p-7 flex flex-col gap-5 overflow-hidden transition-transform duration-200 hover:-translate-y-1">
-              <div className="absolute inset-0 pointer-events-none opacity-30"
-                style={{ background: "radial-gradient(ellipse 70% 60% at 0% 0%, rgba(239,68,68,0.12), transparent 70%)" }} />
-              {/* Quote mark */}
-              <Quote className="w-6 h-6 text-red-500/30 shrink-0 relative z-10" />
-              {/* Text */}
-              <p className="text-zinc-300 text-sm leading-relaxed flex-1 relative z-10">{text}</p>
-              {/* Footer */}
-              <div className="relative z-10 flex items-center gap-3 pt-2 border-t border-white/[0.05]">
-                {/* Avatar: b&w + red overlay */}
-                <Avatar className="w-9 h-9 shrink-0 ring-1 ring-zinc-700">
-                  <AvatarImage
-                    src={photo}
-                    alt={name}
-                    className="grayscale contrast-150 brightness-[65%]"
-                  />
-                  <span className="absolute inset-0 rounded-full pointer-events-none"
-                    style={{ background: "linear-gradient(to top, rgba(220,38,38,0.32) 0%, rgba(220,38,38,0.09) 42%, transparent 65%)" }} />
-                  <AvatarFallback className="text-xs bg-zinc-800 text-zinc-400">{initials}</AvatarFallback>
-                </Avatar>
-                <div className="flex-1 min-w-0">
-                  <div className="text-sm font-semibold text-white truncate">{name}</div>
-                  <div className="text-xs text-zinc-500 truncate">{role} · {location}</div>
-                </div>
-                <StarRow />
-              </div>
-            </div>
-          </FadeUp>
-        ))}
+      {/* Shuffle card stack */}
+      <div className="flex justify-center">
+        <ShuffleCards testimonials={testimonials} />
       </div>
 
       {/* Bottom trust line */}
       <FadeUp delay={0.3}>
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-zinc-500">
+        <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-zinc-500">
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
               {testimonials.slice(0, 5).map(({ photo, initials }, i) => (
