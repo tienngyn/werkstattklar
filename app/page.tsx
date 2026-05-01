@@ -356,12 +356,12 @@ function Hero() {
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.48 }}
           className="flex flex-col sm:flex-row gap-4 mb-8"
         >
-          <CTA size="lg">Kennenlern-Gespräch buchen <ArrowRight className="w-5 h-5" /></CTA>
+          <CTA size="lg" className="!text-sm !px-5 !py-3.5 sm:!text-lg sm:!px-10 sm:!py-5">Kennenlern-Gespräch buchen <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" /></CTA>
           <button
             onClick={() => scrollTo("leistungen")}
-            className="inline-flex items-center justify-center gap-2 cursor-pointer px-10 py-5 text-lg border border-zinc-700 hover:border-red-500/50 text-zinc-300 hover:text-white font-semibold rounded-xl transition-all duration-200 hover:bg-red-600/5 relative z-50"
+            className="inline-flex items-center justify-center gap-2 cursor-pointer px-5 py-3.5 text-sm sm:px-10 sm:py-5 sm:text-lg border border-zinc-700 hover:border-red-500/50 text-zinc-300 hover:text-white font-semibold rounded-xl transition-all duration-200 hover:bg-red-600/5 relative z-50"
           >
-            Leistungen ansehen <ArrowRight className="w-5 h-5" />
+            Leistungen ansehen <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </motion.div>
 
