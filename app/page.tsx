@@ -903,6 +903,7 @@ function HowItWorks() {
 // ─── TESTIMONIALS ─────────────────────────────────────────────────────────────
 const testimonials: Testimonial[] = [
   {
+    id: 1,
     name: "Markus H.",
     role: "Elektroinstallateur",
     location: "Heilbronn",
@@ -912,6 +913,7 @@ const testimonials: Testimonial[] = [
     stars: 5,
   },
   {
+    id: 2,
     name: "Sandra B.",
     role: "Malermeisterin",
     location: "Stuttgart",
@@ -921,6 +923,7 @@ const testimonials: Testimonial[] = [
     stars: 5,
   },
   {
+    id: 3,
     name: "Daniel K.",
     role: "Heizung & Sanitär",
     location: "Mannheim",
@@ -930,6 +933,7 @@ const testimonials: Testimonial[] = [
     stars: 5,
   },
   {
+    id: 4,
     name: "Lisa M.",
     role: "Personaltrainerin",
     location: "Karlsruhe",
@@ -939,6 +943,7 @@ const testimonials: Testimonial[] = [
     stars: 5,
   },
   {
+    id: 5,
     name: "Thomas R.",
     role: "Schreiner",
     location: "Heidelberg",
@@ -948,6 +953,7 @@ const testimonials: Testimonial[] = [
     stars: 5,
   },
   {
+    id: 6,
     name: "Nina F.",
     role: "Kosmetikstudio",
     location: "Ludwigsburg",

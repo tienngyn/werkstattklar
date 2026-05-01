@@ -14,6 +14,7 @@ export interface Testimonial {
   initials: string;
   photo: string;
   text: string;
+  stars?: number;
 }
 
 interface CardProps {
