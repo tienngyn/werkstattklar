@@ -542,20 +542,20 @@ function AboutMe() {
           <Stagger className="flex flex-col gap-5">
             <FadeUp>
               <p className="text-zinc-300 text-lg leading-relaxed">
-                Dein Text hier. Schreib mir kurz wer du bist, was dich antreibt und warum du dieses Business aufgebaut hast — ich passe diesen Abschnitt dann an.
+                Mein Name ist Tien. Ich baue Webseiten und Vertriebssysteme für Autobetriebe — keine Agentur, kein Subunternehmer, kein Stille-Post-Spiel. Du redest direkt mit mir, und ich liefere.
               </p>
             </FadeUp>
             <FadeUp>
               <p className="text-zinc-400 text-base leading-relaxed">
-                Beschreibe hier kurz deine Erfahrung, deine Werte und was dich von einer Agentur unterscheidet. Der persönliche Ton macht hier den Unterschied.
+                Ich habe WerkstattKLAR gegründet, weil ich gesehen habe, wie viele gute Betriebe online unsichtbar sind — nicht weil ihr Angebot schlecht ist, sondern weil niemand es ihnen sagt. Mit Erfahrung in Webdesign, Funnel-Aufbau und Vertrieb bringe ich das zusammen, was die meisten Agenturen trennen: Ästhetik und Wirkung.
               </p>
             </FadeUp>
             <FadeUp>
               <div className="flex flex-col gap-3 pt-2">
                 {[
-                  "Deine Domain gehört dir — immer",
-                  "Du bekommst alle Zugangsdaten",
-                  "Festpreis ab Angebot — keine Extras",
+                  "Kein Agentur-Overhead — du zahlst für Ergebnisse",
+                  "Direkte Kommunikation, keine langen Abstimmungsschleifen",
+                  "Design, das nicht nur gut aussieht — sondern verkauft",
                 ].map(item => (
                   <div key={item} className="flex items-center gap-3">
                     <span className="grid w-5 h-5 place-content-center rounded-full bg-red-600/90 text-white shrink-0">
