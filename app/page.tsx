@@ -323,11 +323,17 @@ function TrustBar() {
 function Hero() {
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* Background image — no filter, just dark overlay */}
+      {/* Background image — mobile */}
+      <img
+        src="/hero-bg-mobile.png"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0 sm:hidden"
+      />
+      {/* Background image — desktop */}
       <img
         src="/hero-bg.png"
         alt=""
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0 hidden sm:block"
       />
       {/* Dark overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none bg-black/60" />
