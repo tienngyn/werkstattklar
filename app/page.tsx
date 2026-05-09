@@ -322,22 +322,21 @@ function TrustBar() {
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <div className="relative overflow-hidden">
-      {/* Full-bleed background — outside LampContainer so it ignores content padding */}
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background image — no filter, just dark overlay */}
       <img
         src="/hero-bg.png"
         alt=""
-        className="absolute inset-0 w-full h-full object-cover grayscale brightness-[40%] pointer-events-none select-none z-0"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
       />
-      {/* Top fade so navbar blends in */}
-      <div className="absolute inset-x-0 top-0 h-40 z-0 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, rgba(17,17,17,0.85) 0%, transparent 100%)" }} />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-black/60" />
       {/* Bottom fade into next section */}
-      <div className="absolute inset-x-0 bottom-0 h-32 z-0 pointer-events-none"
+      <div className="absolute inset-x-0 bottom-0 h-40 z-0 pointer-events-none"
         style={{ background: "linear-gradient(to top, #111111 0%, transparent 100%)" }} />
 
-    <LampContainer className="!bg-transparent" contentClassName="max-w-6xl mx-auto px-4 pt-36 pb-10">
-      <div className="max-w-4xl relative z-30">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 pt-36 pb-20">
+      <div className="max-w-4xl">
         {/* Pill above headline */}
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }} className="mb-6">
           <span className="inline-flex items-center gap-2 bg-red-950/40 border border-red-500/20 rounded-full px-4 py-2 text-sm font-medium text-zinc-300">
@@ -417,7 +416,7 @@ function Hero() {
           </div>
         </motion.div>
       </div>
-    </LampContainer>
+      </div>
     </div>
   );
 }
