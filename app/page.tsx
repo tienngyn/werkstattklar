@@ -531,13 +531,12 @@ function AboutMe() {
         </Stagger>
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <FadeUp>
-            <div className="relative rounded-2xl border border-zinc-800/60 bg-zinc-900/50 overflow-hidden aspect-[4/3] flex items-center justify-center">
-              <div className="absolute inset-0 pointer-events-none opacity-40"
-                style={{ background: "radial-gradient(ellipse 60% 80% at 50% 0%, rgba(239,68,68,0.12), transparent 70%)" }} />
-              <div className="relative z-10 flex flex-col items-center gap-3 text-zinc-600">
-                <User className="w-20 h-20 opacity-20" />
-                <span className="text-xs uppercase tracking-widest opacity-40">Dein Foto hier</span>
-              </div>
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+              <img
+                src="/about-me.png"
+                alt="Über mich"
+                className="w-full h-full object-cover"
+              />
             </div>
           </FadeUp>
           <Stagger className="flex flex-col gap-5">
