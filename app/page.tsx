@@ -531,11 +531,11 @@ function AboutMe() {
         </Stagger>
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <FadeUp>
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+            <div className="relative rounded-2xl overflow-hidden">
               <img
                 src="/about-me.png"
                 alt="Über mich"
-                className="w-full h-full object-cover"
+                className="w-full h-auto"
               />
             </div>
           </FadeUp>
