@@ -323,6 +323,16 @@ function TrustBar() {
 function Hero() {
   return (
     <LampContainer contentClassName="max-w-6xl mx-auto px-4 pt-36 pb-10">
+      {/* Background image — b&w + dark overlay + red gradient from bottom */}
+      <img
+        src="/hero-bg.png"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover grayscale brightness-[25%] pointer-events-none select-none z-0"
+      />
+      <div className="absolute inset-0 z-0 pointer-events-none"
+        style={{ background: "linear-gradient(to top, rgba(220,38,38,0.18) 0%, rgba(220,38,38,0.05) 35%, transparent 60%)" }} />
+      <div className="absolute inset-0 z-0 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, rgba(17,17,17,0.7) 0%, transparent 40%)" }} />
       <div className="max-w-4xl relative z-30">
         {/* Pill above headline */}
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.05 }} className="mb-6">
